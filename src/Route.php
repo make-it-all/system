@@ -46,8 +46,7 @@ class Route {
       $start = $matches[0][$i][1];
       $match_len = strlen($matches[0][$i][0]);
 
-      // $path .= addslashes(substr($raw, $last_offset, $start-$last_offset));
-      $path .= (substr($raw, $last_offset, $start-$last_offset));
+      $path .= substr($raw, $last_offset, $start-$last_offset);
       $last_offset = $start + $match_len;
 
       $name = $matches[1][$i][0];
