@@ -4,112 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f9d7c6fc54ac1b8d5ef8fb99b43c7541",
-    "content-hash": "3d22c59124d7b6f9bcba77cc8d7bfec8",
+    "hash": "36aee5e649d31a356c22582cfe11c2b6",
+    "content-hash": "0bc4a30bd5b08144351489c3efa8fbd8",
     "packages": [
-        {
-            "name": "dibi/dibi",
-            "version": "v3.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dg/dibi.git",
-                "reference": "22e6ea4e404504bb23a7075ed54c64e5d9bfb0e2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dg/dibi/zipball/22e6ea4e404504bb23a7075ed54c64e5d9bfb0e2",
-                "reference": "22e6ea4e404504bb23a7075ed54c64e5d9bfb0e2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.4"
-            },
-            "replace": {
-                "dg/dibi": "*"
-            },
-            "require-dev": {
-                "nette/tester": "~1.7",
-                "tracy/tracy": "~2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ],
-                "files": [
-                    "src/loader.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                }
-            ],
-            "description": "Dibi is Database Abstraction Library for PHP",
-            "homepage": "https://dibiphp.com",
-            "keywords": [
-                "access",
-                "database",
-                "dbal",
-                "mssql",
-                "mysql",
-                "odbc",
-                "oracle",
-                "pdo",
-                "postgresql",
-                "sqlite",
-                "sqlsrv"
-            ],
-            "time": "2017-01-04 14:18:17"
-        },
         {
             "name": "hexmodr/chronicle",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/home/henry/work/uni/make_it_all/chronicle",
-                "reference": "05d1063b1ce189058a88b6097913c44bf145a17e"
+                "url": "https://github.com/make-it-all/chronicle.git",
+                "reference": "cb378dc354403950e6f17411f83c69dafee4aa88"
             },
-            "require": {
-                "dibi/dibi": "^3.0"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/make-it-all/chronicle/zipball/cb378dc354403950e6f17411f83c69dafee4aa88",
+                "reference": "cb378dc354403950e6f17411f83c69dafee4aa88",
+                "shasum": ""
             },
-            "type": "project",
+            "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Chronicle": "src"
+                "psr-4": {
+                    "Chronicle\\Connection\\": "src/connection"
                 }
             },
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
                     "name": "Henry Morgan",
                     "email": "henry@cd2solutions.co.uk"
                 }
             ],
-            "description": "Chronicle is a database managment system similar to ActiveRecord",
-            "time": "2016-11-15 17:21:02"
+            "description": "Chronicle is a database abstraction system similar to ActiveRecord",
+            "support": {
+                "source": "https://github.com/make-it-all/chronicle/tree/master",
+                "issues": "https://github.com/make-it-all/chronicle/issues"
+            },
+            "time": "2017-02-11 12:49:15"
         },
         {
             "name": "hexmodr/rack",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "/home/henry/work/uni/make_it_all/rack",
-                "reference": "db9ab67f190cac499a5d18c5e764627aeee24da8"
+                "url": "https://github.com/make-it-all/rack.git",
+                "reference": "5f02951fe607cd1f3f0cdeec6be2b9c31a2c173c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/make-it-all/rack/zipball/5f02951fe607cd1f3f0cdeec6be2b9c31a2c173c",
+                "reference": "5f02951fe607cd1f3f0cdeec6be2b9c31a2c173c",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -127,7 +70,11 @@
                 }
             ],
             "description": "Rack Server interface for php applications",
-            "time": "2017-01-05 18:15:32"
+            "support": {
+                "source": "https://github.com/make-it-all/rack/tree/master",
+                "issues": "https://github.com/make-it-all/rack/issues"
+            },
+            "time": "2017-02-13 19:51:21"
         }
     ],
     "packages-dev": [],
