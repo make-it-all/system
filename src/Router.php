@@ -32,12 +32,12 @@ class Router {
     $except = $opts['except'] ?? null;
     $base_routes = [
       'index'=>["/$resource_name", "$resource_name#index", 'GET'],
-      'show'=>["/$resource_name", "$resource_name#show", 'GET'],
-      'new'=>["/$resource_name", "$resource_name#new", 'GET'],
+      'show'=>["/$resource_name/:id", "$resource_name#show", 'GET'],
+      'new'=>["/$resource_name/new", "$resource_name#new", 'GET'],
       'create'=>["/$resource_name", "$resource_name#create", 'POST'],
-      'edit'=>["/$resource_name", "$resource_name#edit", 'GET'],
-      'update'=>["/$resource_name", "$resource_name#update", 'PUT'],
-      'destroy'=>["/$resource_name", "$resource_name#destroy", 'DELETE']
+      'edit'=>["/$resource_name/:id/edit", "$resource_name#edit", 'GET'],
+      'update'=>["/$resource_name/:id", "$resource_name#update", 'PUT'],
+      'destroy'=>["/$resource_name/:id", "$resource_name#destroy", 'DELETE']
     ];
     if ($except !== null) {
       $base_routes = array_diff_key($routes, array_flip($except));
