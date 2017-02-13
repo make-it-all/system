@@ -15,11 +15,9 @@ class Application {
   }
 
   public function call($env) {
-    var_dump(self::get_router()->routes[1]->match('/users/123/asd'));
-
     $routes = self::get_router()->match_path($env->path, $env->method);
     foreach ($routes as $route) {
-      var_dump($route);
+      return $this->dispatch($route);
     }
     return [404, [], []];
   }
@@ -38,11 +36,20 @@ class Application {
     Rack::add('Application');
   }
 
-  public function get_router() {
+  public static function get_router() {
     if (self::$router === null) {
       self::$router = new Router;
     }
     return self::$router;
+  }
+
+  public static function dispatch($request_glob) {
+    $controller_path = self::$paths['controllers'];
+    $controller_file = $request_glob['controller'];
+    $controller_name = ucfirst($controller_file).'Controller';
+    require_once "$controller_path/$controller_file.php";
+    $controller = new $controller_name;
+    return $controller->process($request_glob);
   }
 
 }
