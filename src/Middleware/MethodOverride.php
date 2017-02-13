@@ -11,8 +11,8 @@ class MethodOverride {
   }
 
   function call($env) {
-    if (isset($env->request[self::OVERRIDE_PARAM_KEY])) {
-      $override = $env->request[self::OVERRIDE_PARAM_KEY];
+    if (isset($env->request_vars[self::OVERRIDE_PARAM_KEY])) {
+      $override = $env->request_vars[self::OVERRIDE_PARAM_KEY];
       $override = strtoupper($override);
       if (in_array($override, self::METHODS)) {
         $env->set('method_override.original', $env->method);

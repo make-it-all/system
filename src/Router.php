@@ -36,14 +36,14 @@ class Router {
       'new'=>["/$resource_name/new", "$resource_name#new", 'GET'],
       'create'=>["/$resource_name", "$resource_name#create", 'POST'],
       'edit'=>["/$resource_name/:id/edit", "$resource_name#edit", 'GET'],
-      'update'=>["/$resource_name/:id", "$resource_name#update", 'PUT'],
+      'update'=>["/$resource_name/:id", "$resource_name#update", ['PUT', 'PATCH']],
       'destroy'=>["/$resource_name/:id", "$resource_name#destroy", 'DELETE']
     ];
     if ($except !== null) {
-      $base_routes = array_diff_key($routes, array_flip($except));
+      $base_routes = array_diff_key($base_routes, array_flip($except));
     }
     if ($only !== null) {
-      $base_routes = array_intersect_key($routes, array_flip($only));
+      $base_routes = array_intersect_key($base_routes, array_flip($only));
     }
     foreach($base_routes as $route) {
       call_user_func_array([$this, 'match'], $route);
