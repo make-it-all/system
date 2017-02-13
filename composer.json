@@ -13,10 +13,10 @@
   },
   "repositories": [{
     "type": "vcs",
-    "url": "/home/henry/work/uni/make_it_all/rack"
+    "url": "https://github.com/make-it-all/rack"
   }, {
     "type": "vcs",
-    "url": "/home/henry/work/uni/make_it_all/chronicle"
+    "url": "https://github.com/make-it-all/chronicle"
   }],
   "autoload": {
     "files": [

@@ -40,7 +40,7 @@ class Router {
   public function match_path($path, $method='GET') {
     foreach($this->routes as $route) {
       $match = $route->match($path, $method);
-      if ($match != null) {
+      if ($match !== null) {
         yield $match;
       }
     }

@@ -10,6 +10,7 @@ class Base {
 
   public function process($request_glob) {
     $action = $request_glob['action'];
+    // TODO: PARAMS
     $params = $request_glob['params'];
     if (!method_exists($this, $action)) {
       throw new ActionNotFound($this, $action);
