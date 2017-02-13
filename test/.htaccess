@@ -1,0 +1,11 @@
+RewriteEngine on
+
+# if path matches a file
+# RewriteCond %{REQUEST_FILENAME} !-f
+
+# if path matches a directory
+# RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_URI} !^/index.php
+
+RewriteRule ^(.*)$ /index.php [NC,L,QSA]

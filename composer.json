@@ -1,0 +1,33 @@
+{
+  "name": "make_it_all/system",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Henry Morgan",
+      "email": "henry@cd2solutions.co.uk"
+    }
+  ],
+  "require": {
+    "hexmodr/rack": "dev-master",
+    "hexmodr/chronicle": "dev-master"
+  },
+  "repositories": [{
+    "type": "vcs",
+    "url": "/home/henry/work/uni/make_it_all/rack"
+  }, {
+    "type": "vcs",
+    "url": "/home/henry/work/uni/make_it_all/chronicle"
+  }],
+  "autoload": {
+    "files": [
+      "src/Application.php",
+      "src/ControllerBase.php",
+      "src/Router.php",
+      "src/Route.php"
+    ],
+    "psr-4": {
+      "Middleware\\": "src/Middleware",
+      "Application\\": "src/Application"
+    }
+  }
+}
