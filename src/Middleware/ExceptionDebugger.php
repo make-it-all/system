@@ -1,32 +1,26 @@
 <?php namespace Middleware;
 
-class ExceptionPresenter {
+class ExceptionDebugger {
 
-  const FAILSAFE = [500, ['Content-Type' => 'text/plain'], [
-      "500 Internal Server Error\n"
-    . 'If you are the system admin then please refer '
-    . 'to the logs to see what went wrong.'
-    ]];
-
-  function __construct($app) {
+  public function __construct($app) {
     $this->app = $app;
   }
 
-  function call($env) {
+  public function call($env) {
+    set_error_handler(function ($errorNumber, $errorText, $errorFile, $errorLine ) {
+      throw new \ErrorException($errorText, 0, $errorNumber, $errorFile, $errorLine);
+    });
+
     try {
       return $this->app->call($env);
     } catch(\Exception $e) {
       if (true) {
-        $wrapper = new ExceptionWrapper($e);
-        try {
-          return $this->render_exception($env, $e);
-        } catch(\Exception $e) {
-          return self::FAILSAFE;
-        }
+        return $this->render_exception($env, $e);
       } else {
         throw $e;
       }
     }
+
   }
 
   private function render_exception($env, $exception) {
@@ -34,9 +28,13 @@ class ExceptionPresenter {
 
     $this->log($wrapper);
 
-    $status = $wrapper->getHttpStatus();
-    $body = $this->render_body($env, $wrapper);
-    return [$status, [], $body];
+    if (true) {
+      $status = $wrapper->getHttpStatus();
+      $body = $this->render_body($env, $wrapper);
+      return [$status, [], $body];
+    } else {
+      throw $exception;
+    }
   }
 
   private function log() {
@@ -44,8 +42,7 @@ class ExceptionPresenter {
   }
 
   private function render_body($env, $wrapper) {
-    $file = $this->template_for_status($wrapper->getHttpStatus());
-    $file = "templates/$file.php";
+    $file = $wrapper->to_template_path();
 
     $locals = [
       'error_type' => $wrapper->getType(),
@@ -65,10 +62,5 @@ class ExceptionPresenter {
     require $__path;
     return ob_get_clean();
   }
-
-  public function template_for_status($status) {
-    return ['404' => '404', '500'=>'500'][$status] ?? '500';
-  }
-
 
 }
