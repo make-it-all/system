@@ -3,14 +3,19 @@
 class Application {
 
   public static $paths = [];
-  public static $router;
+  private static $router;
+  private static $env;
 
   public static function run() {
     self::set_default_paths();
+
+    //add default middleware
     self::set_default_middleware();
+
     self::setup_chronicle();
     self::get_router()->parse_file(self::$paths['routes']);
 
+    //run application
     Rack::run();
   }
 
@@ -49,7 +54,7 @@ class Application {
     Rack::add('\Middleware\ExceptionPresenter');
 
     //shows a debug screen when an exception is thrown
-    if (true) {
+    if (static::env()->is_development()) {
       Rack::add('\Middleware\ExceptionDebugger');
     }
 
@@ -85,6 +90,11 @@ class Application {
     require_once "$controller_path/$controller_file.php";
     $controller = new $controller_name;
     return $controller->process($request_glob);
+  }
+
+  public static function env() {
+    if (self::$env == null) { self::$env = new Application\Environment($_ENV['system_env'] ?? 'development'); }
+    return self::$env;
   }
 
 }
