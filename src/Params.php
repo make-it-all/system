@@ -5,7 +5,7 @@ class Params implements \ArrayAccess, \Iterator {
   private $vars = [];
 
   public function __construct($request_glob) {
-    $this->vars = \Application::$env->request_vars;
+    $this->vars = \Application::env()->request_vars;
     $this->vars = array_merge($request_glob['params']);
     $this->vars['controller'] = $request_glob['controller'];
     $this->vars['action'] = $request_glob['action'];
