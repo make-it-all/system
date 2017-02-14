@@ -5,10 +5,14 @@ class Application {
   public static $paths = [];
   private static $router;
   private static $env;
+  public static $config;
 
   public static function run() {
     self::set_default_paths();
     self::set_autoloader();
+
+    //loads configuration
+    self::load_config();
 
     //add default middleware
     self::set_default_middleware();
@@ -38,6 +42,7 @@ class Application {
     self::$paths['public'] = 'public/';
     self::$paths['logs/requests'] = 'logs/requests.log';
     self::$paths['config/database'] = 'config/database.php';
+    self::$paths['config'] = 'config/';
   }
 
   public function set_autoloader() {
@@ -55,7 +60,7 @@ class Application {
 
   public static function set_default_middleware() {
     //Serve static files
-    if (true) {
+    if (static::$config['serve_static_assets']) {
       Rack::add('\Middleware\StaticFile', self::$paths['public']);
     }
 
@@ -92,6 +97,13 @@ class Application {
     Chronicle\Base::setup_connection($config);
   }
 
+  public static function load_config() {
+    self::$config = (function(){
+      require Application::$paths['config'].Application::env().'.php';
+      return get_defined_vars();
+    })();
+  }
+
   public static function get_router() {
     if (self::$router === null) {
       self::$router = new Router;
@@ -115,6 +127,10 @@ class Application {
   public static function env() {
     if (self::$env == null) { self::$env = new Application\Environment($_ENV['system_env'] ?? 'development'); }
     return self::$env;
+  }
+
+  public static function set_environment($env) {
+    self::$env = new Application\Environment($env);
   }
 
 }
