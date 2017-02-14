@@ -14,7 +14,7 @@ class ExceptionDebugger {
     try {
       return $this->app->call($env);
     } catch(\Exception $e) {
-      if (true) {
+      if (\Application::$config['show_exceptions']) {
         return $this->render_exception($env, $e);
       } else {
         throw $e;
@@ -28,7 +28,7 @@ class ExceptionDebugger {
 
     $this->log($wrapper);
 
-    if (true) {
+    if (\Application::$config['debug_exceptions']) {
       $status = $wrapper->getHttpStatus();
       $body = $this->render_body($env, $wrapper);
       return [$status, [], $body];
