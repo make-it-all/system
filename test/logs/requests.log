@@ -56,3 +56,5 @@ Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:17:17 +0100
 Finish 500 in 1.919ms
 Begin HEAD to /problems on localhost at Tue, 14 Feb 2017 15:17:30 +0100
 Finish 500 in 1.998ms
+Begin HEAD to /problems on localhost at Tue, 14 Feb 2017 15:23:37 +0100
+Finish 500 in 2.408ms
