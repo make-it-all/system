@@ -8,25 +8,39 @@ class Base {
   protected $performed = false;
 
 
-  public function process($request_glob) {
-    $action = $request_glob['action'];
-    $this->params = $request_glob['params'];
-    if (!method_exists($this, $action)) {
-      throw new ActionNotFound($this, $action);
+  public function process($params) {
+    $action = $params['action'];
+    $this->params = $params;
+
+    $this->status = 200;
+    $this->response_headers = [];
+    $this->response_body = null;
+
+    $locals = $this->send_action($action);
+    if (!$this->performed) {
+      $this->response_body = $this->render_view($params);
     }
-    $this->_status = 200;
-    $this->_response_headers = [];
-    $this->_response_body = null;
-    $this->send_action($action);
-    return [$this->_status, $this->_response_headers, $this->_response_body];
+    return [$this->status, $this->response_headers, $this->response_body];
   }
 
   public function send_action($action) {
-    $pre_vars = get_object_vars($this);
-    $this->$action();
-    $locals = array_diff_key(get_object_vars($this), $pre_vars);
-    if (!$this->performed) {
+    if (method_exists($this, $action)) {
+      $pre_vars = get_object_vars($this);
+      $this->$action();
+      $locals = array_diff_key(get_object_vars($this), $pre_vars);
+      return $locals;
+    }
+  }
+
+  public function render_view() {
+
+  }
+
+  public function default_render($action, $locals) {
+    try {
       $this->render($action, $locals);
+    } catch(\Error\FileNotFound $e) {
+      throw new ActionNotFound($this, $action);
     }
   }
 
@@ -35,6 +49,9 @@ class Base {
       throw new ActionPerformed('This action has already either rendered or redirected and can not render again.');
     } else {
       $filename = \Application::$paths['views'] . '/' . $this->view_folder . '/' . $file . '.php';
+      if (!file_exists($filename)) {
+        throw new \Error\FileNotFound();
+      }
       $this->_response_body = (function($__view_file_path) use ($locals){
         extract($locals);
         ob_start();

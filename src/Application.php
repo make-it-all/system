@@ -4,9 +4,11 @@ class Application {
 
   public static $paths = [];
   public static $router;
+  public static $env;
 
   public static function run() {
     self::set_default_paths();
+    self::set_autoloader();
     self::set_default_middleware();
     self::setup_chronicle();
     self::get_router()->parse_file(self::$paths['routes']);
@@ -15,21 +17,36 @@ class Application {
   }
 
   public function call($env) {
+    self::$env = $env;
     $routes = self::get_router()->match_path($env->path, $env->method);
     foreach ($routes as $route) {
-      return $this->dispatch($route);
+      $params = new Application\Params($route);
+      return $this->dispatch($params);
     }
     throw new \Error\NoRouteMatches();
   }
 
   public static function set_default_paths() {
-    self::$paths['controllers'] = 'app/controllers';
-    self::$paths['views'] = 'app/views';
-    self::$paths['models'] = 'app/models';
+    self::$paths['controllers'] = 'app/controllers/';
+    self::$paths['views'] = 'app/views/';
+    self::$paths['models'] = 'app/models/';
     self::$paths['routes'] = 'config/routes.php';
     self::$paths['public'] = 'public/';
     self::$paths['logs/requests'] = 'logs/requests.log';
     self::$paths['config/database'] = 'config/database.php';
+  }
+
+  public function set_autoloader() {
+    spl_autoload_register(function($class){
+      if (substr($class, -10) == 'Controller') {
+        require_once self::$paths['controllers'] . self::toUnderscore($class) . '.php';
+      } else {
+        $model_path = self::$paths['models'] . strtolower($class) . '.php';
+        if (file_exists($model_path)) {
+          require_once $model_path;
+        }
+      }
+    });
   }
 
   public static function set_default_middleware() {
@@ -78,13 +95,17 @@ class Application {
     return self::$router;
   }
 
-  public static function dispatch($request_glob) {
-    $controller_path = self::$paths['controllers'];
-    $controller_file = $request_glob['controller'];
-    $controller_name = ucfirst($controller_file).'Controller';
-    require_once "$controller_path/$controller_file.php";
-    $controller = new $controller_name;
-    return $controller->process($request_glob);
+  public static function dispatch($params) {
+    $controller_class = ucfirst($params['controller']).'Controller';
+    $controller = new $controller_class;
+    return $controller->process($params);
+  }
+
+  public static function toUnderscore($str) {
+    $str = preg_replace('([A-Z]+)', '_$0', $str);
+    $str = strtolower($str);
+    $str = trim($str, '_');
+    return $str;
   }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends Controller\Base {
+class UsersController extends ApplicationController {
 
   public $view_folder = 'users';
 
@@ -10,6 +10,15 @@ class UsersController extends Controller\Base {
 
   public function show() {
     $this->user = 'Henry';
+  }
+
+  public function new() {
+    new User();
+    $this->x = 2;
+  }
+
+  public function edit() {
+
   }
 
 }
