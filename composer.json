@@ -25,7 +25,8 @@
       "src/Router.php",
       "src/Route.php",
       "src/Logger.php",
-      "src/Params.php"
+      "src/Params.php",
+      "src/Environment.php"
     ],
     "psr-4": {
       "Middleware\\": "src/Middleware",
