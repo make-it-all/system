@@ -2,6 +2,7 @@
 
 class Route {
   public function __construct($path, $to, $via) {
+    $this->raw_path = $path;
     $this->path = $this->parse_raw_path($path);
     $this->parse_to($to);
     $this->via = $via;

@@ -3,11 +3,7 @@
 class ExceptionWrapper {
 
   private static $exception_status_codes = [
-
-  ];
-
-  private static $template_paths = [
-
+    'Error\NoRouteMatches' => 'page_not_found'
   ];
 
   private $traceback;

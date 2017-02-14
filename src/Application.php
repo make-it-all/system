@@ -1,6 +1,5 @@
 <?php
 
-
 class Application {
 
   public static $paths = [];
@@ -20,7 +19,7 @@ class Application {
     foreach ($routes as $route) {
       return $this->dispatch($route);
     }
-    return [404, ['Content-Type' => 'text/plain'], ['404 Error']];
+    throw new \Error\NoRouteMatches();
   }
 
   public static function set_default_paths() {
