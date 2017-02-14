@@ -9,6 +9,7 @@ class Application {
   public static function run() {
     self::set_default_paths();
     self::set_default_middleware();
+    self::setup_chronicle();
     self::get_router()->parse_file(self::$paths['routes']);
 
     Rack::run();
@@ -29,6 +30,7 @@ class Application {
     self::$paths['routes'] = 'config/routes.php';
     self::$paths['public'] = 'public/';
     self::$paths['logs/requests'] = 'logs/requests.log';
+    self::$paths['config/database'] = 'config/database.php';
   }
 
   public static function set_default_middleware() {
@@ -48,6 +50,14 @@ class Application {
     Rack::add('\Middleware\ExceptionPresenter');
 
     Rack::add('Application');
+  }
+
+  public static function setup_chronicle() {
+    $config = (function(){
+      require Application::$paths['config/database'];
+      return get_defined_vars();
+    })();
+    Chronicle\Base::setup_connection($config);
   }
 
   public static function get_router() {
