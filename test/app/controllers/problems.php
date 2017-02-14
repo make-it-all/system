@@ -8,4 +8,9 @@ class ProblemsController extends Controller\Base {
     $this->render('index');
   }
 
+  public function index(){
+    //throw new Exception();
+
+  }
+
 }

@@ -23,7 +23,8 @@
       "src/Application.php",
       "src/ControllerBase.php",
       "src/Router.php",
-      "src/Route.php"
+      "src/Route.php",
+      "src/Logger.php"
     ],
     "psr-4": {
       "Middleware\\": "src/Middleware",

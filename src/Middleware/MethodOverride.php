@@ -1,5 +1,6 @@
 <?php namespace Middleware;
 
+//Overrides the browsers default request methods
 class MethodOverride {
 
   const METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'];

@@ -27,11 +27,25 @@ class Application {
     self::$paths['views'] = 'app/views';
     self::$paths['models'] = 'app/models';
     self::$paths['routes'] = 'config/routes.php';
+    self::$paths['public'] = 'public/';
+    self::$paths['logs/requests'] = 'logs/requests.log';
   }
 
   public static function set_default_middleware() {
+    //Serve static files
+    if (true) {
+      Rack::add('\Middleware\StaticFile', self::$paths['public']);
+    }
+
     //Rewrites request method allowing browsers to send put, patch and delete requests
     Rack::add('\Middleware\MethodOverride');
+
+    //logs the request
+    $logs_file = self::$paths['logs/requests'];
+    Rack::add('\Middleware\Logger', new Application\Logger($logs_file));
+
+    //handles errors for user such as 500 and 404
+    Rack::add('\Middleware\ExceptionPresenter');
 
     Rack::add('Application');
   }

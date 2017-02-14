@@ -3,7 +3,7 @@ $r->post('/sessions/login', 'sessions#new');
 
 $r->get('/calls', 'calls#index');
 $r->get('/calls/:id', 'call#show');
-$r->get('/calls/new'), 'calls#show');
+$r->get('/calls/new', 'calls#show');
 
 $r->get('/problems', 'problems#index');
 $r->get('/problems/outstanding', 'problems#index');
