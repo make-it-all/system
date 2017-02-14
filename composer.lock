@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "4af43db197195b71e2d79eb55246d9de",
     "content-hash": "0bc4a30bd5b08144351489c3efa8fbd8",
     "packages": [
         {
@@ -40,7 +41,7 @@
                 "source": "https://github.com/make-it-all/chronicle/tree/master",
                 "issues": "https://github.com/make-it-all/chronicle/issues"
             },
-            "time": "2017-02-13T23:36:35+00:00"
+            "time": "2017-02-13 23:36:35"
         },
         {
             "name": "hexmodr/rack",
@@ -76,7 +77,7 @@
                 "source": "https://github.com/make-it-all/rack/tree/master",
                 "issues": "https://github.com/make-it-all/rack/issues"
             },
-            "time": "2017-02-13T21:44:30+00:00"
+            "time": "2017-02-13 21:44:30"
         }
     ],
     "packages-dev": [],
