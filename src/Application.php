@@ -29,7 +29,8 @@ class Application {
     $routes = self::get_router()->match_path($env->path, $env->method);
     foreach ($routes as $route) {
       $params = new Application\Params($route);
-      return $this->dispatch($params);
+       $this->dispatch($params);
+       return [200, [], ['Hello']];
     }
     throw new \Error\NoRouteMatches();
   }
@@ -41,8 +42,8 @@ class Application {
     self::$paths['routes'] = 'config/routes.php';
     self::$paths['public'] = 'public/';
     self::$paths['logs/requests'] = 'logs/requests.log';
-    self::$paths['config/database'] = 'config/database.php';
-    self::$paths['config'] = 'config/';
+    self::$paths['config/database'] = 'config/environment/database.php';
+    self::$paths['config'] = 'config/environment/';
   }
 
   public function set_autoloader() {
@@ -106,7 +107,7 @@ class Application {
 
   public static function get_router() {
     if (self::$router === null) {
-      self::$router = new Router;
+      self::$router = new \Application\Router;
     }
     return self::$router;
   }

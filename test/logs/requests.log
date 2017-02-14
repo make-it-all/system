@@ -740,3 +740,23 @@ Begin GET to /users/new on localhost at Tue, 14 Feb 2017 21:23:22 +0000
 Finish 200 in 0.722ms
 Begin GET to /users/new on localhost at Tue, 14 Feb 2017 21:23:33 +0000
 Finish 200 in 0.249ms
+Begin GET to /asd on localhost at Tue, 14 Feb 2017 23:05:02 +0100
+Finish page_not_found in 2.314ms
+Begin GET to /users on localhost at Tue, 14 Feb 2017 23:07:26 +0100
+Finish 500 in 1.828ms
+Begin GET to /users on localhost at Tue, 14 Feb 2017 23:07:48 +0100
+Finish 200 in 1.285ms
+Begin GET to /users on localhost at Tue, 14 Feb 2017 23:08:00 +0100
+Finish 200 in 1.02ms
+Begin GET to /users on localhost at Tue, 14 Feb 2017 23:11:07 +0100
+Finish 200 in 3.114ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 23:12:21 +0100
+Finish 200 in 1.61ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 23:14:29 +0100
+Finish 200 in 1.699ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 23:19:39 +0100
+Finish 200 in 1.696ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 23:22:29 +0100
+Finish 200 in 1.714ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 23:23:33 +0100
+Finish 200 in 1.631ms

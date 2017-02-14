@@ -21,12 +21,7 @@
   "autoload": {
     "files": [
       "src/Application.php",
-      "src/ControllerBase.php",
-      "src/Router.php",
-      "src/Route.php",
-      "src/Logger.php",
-      "src/Params.php",
-      "src/Environment.php"
+      "src/ControllerBase.php"
     ],
     "psr-4": {
       "Middleware\\": "src/Middleware",

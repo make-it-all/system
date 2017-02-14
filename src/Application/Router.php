@@ -1,4 +1,4 @@
-<?php
+<?php namespace Application;
 
 class Router {
 
@@ -25,7 +25,7 @@ class Router {
   public function match($path, $to, $via) {
     $via = (array)$via;
     $path = $this->normalize_path($path);
-    $this->routes[] = new Route($path, $to, $via);
+    $this->routes[] = new \Application\Route($path, $to, $via);
   }
   public function resources($resource_name, $opts=[]) {
     $only = $opts['only'] ?? null;

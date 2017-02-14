@@ -1,4 +1,4 @@
-<?php
+<?php namespace Application;
 
 class Route {
   public function __construct($path, $to, $via) {
