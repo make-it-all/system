@@ -9,7 +9,7 @@ class ProblemsController extends Controller\Base {
   }
 
   public function index(){
-    //throw new Exception();
+    throw new Exception();
 
   }
 

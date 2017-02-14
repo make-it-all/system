@@ -49,6 +49,18 @@ class Application {
     //handles errors for user such as 500 and 404
     Rack::add('\Middleware\ExceptionPresenter');
 
+    //shows a debug screen when an exception is thrown
+    if (true) {
+      Rack::add('\Middleware\ExceptionDebugger');
+    }
+
+    //manages flash sessions to expire on page refresh
+    Rack::add('\Middleware\Flash');
+
+    //strips body on head request
+    Rack::add('\Middleware\Head');
+
+    //processes routes and outputs body
     Rack::add('Application');
   }
 

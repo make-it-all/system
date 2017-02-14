@@ -4,3 +4,55 @@ Begin GET to /problems on localhost at Tue, 14 Feb 2017 01:14:42 +0100
 Finish 200 in 1.044ms
 Begin GET to / on localhost at Tue, 14 Feb 2017 01:14:58 +0100
 Finish 404 in 0.073ms
+Begin GET to /users on localhost at Tue, 14 Feb 2017 01:17:58 +0100
+Finish 200 in 1.095ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 01:23:41 +0100
+Finish 404 in 0.075ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 14:27:17 +0100
+Finish 404 in 2.039ms
+Begin GET to /favicon.ico on localhost at Tue, 14 Feb 2017 14:27:17 +0100
+Finish 404 in 0.095ms
+Begin GET to /favicon.ico on localhost at Tue, 14 Feb 2017 14:27:17 +0100
+Finish 404 in 0.064ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 14:37:31 +0100
+Finish 404 in 0.335ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 14:37:49 +0100
+Finish 404 in 0.087ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 14:38:40 +0100
+Finish 404 in 0.07ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 14:38:42 +0100
+Finish 404 in 0.082ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 14:38:51 +0100
+Finish 404 in 0.072ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:05:58 +0100
+Finish 500 in 2.017ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:06:23 +0100
+Finish 500 in 2.34ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:06:37 +0100
+Finish 200 in 1.107ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:06:50 +0100
+Finish 500 in 2.238ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:08:18 +0100
+Finish 500 in 3.084ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:08:27 +0100
+Finish 200 in 2.645ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:09:03 +0100
+Finish 200 in 1.094ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:10:13 +0100
+Finish 200 in 1.13ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:10:22 +0100
+Finish 200 in 1.059ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:10:48 +0100
+Finish 500 in 1.912ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:12:12 +0100
+Finish 500 in 2.997ms
+Begin HEAD to /problems on localhost at Tue, 14 Feb 2017 15:12:24 +0100
+Finish 404 in 0.071ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:13:04 +0100
+Finish 500 in 2.065ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:16:53 +0100
+Finish 500 in 1.405ms
+Begin GET to /problems on localhost at Tue, 14 Feb 2017 15:17:17 +0100
+Finish 500 in 1.919ms
+Begin HEAD to /problems on localhost at Tue, 14 Feb 2017 15:17:30 +0100
+Finish 500 in 1.998ms
