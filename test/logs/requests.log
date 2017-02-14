@@ -74,3 +74,7 @@ Begin GET to /users on localhost at Tue, 14 Feb 2017 17:16:45 +0100
 Finish 200 in 1.153ms
 Begin GET to / on localhost at Tue, 14 Feb 2017 17:17:20 +0100
 Finish 404 in 0.081ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 17:18:45 +0100
+Finish 404 in 0.072ms
+Begin GET to /asd on localhost at Tue, 14 Feb 2017 17:22:59 +0100
+Finish 404 in 0.09ms

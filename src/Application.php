@@ -20,7 +20,7 @@ class Application {
     foreach ($routes as $route) {
       return $this->dispatch($route);
     }
-    return [404, [], []];
+    return [404, ['Content-Type' => 'text/plain'], ['404 Error']];
   }
 
   public static function set_default_paths() {
