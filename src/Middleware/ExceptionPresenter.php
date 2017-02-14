@@ -16,7 +16,7 @@ class ExceptionPresenter {
     try {
       return $this->app->call($env);
     } catch(\Exception $e) {
-      if (true) {
+      if (false) {
         $wrapper = new ExceptionWrapper($e);
         try {
           return $this->render_exception($env, $e);

@@ -58,3 +58,19 @@ Begin HEAD to /problems on localhost at Tue, 14 Feb 2017 15:17:30 +0100
 Finish 500 in 1.998ms
 Begin HEAD to /problems on localhost at Tue, 14 Feb 2017 15:23:37 +0100
 Finish 500 in 2.408ms
+Begin GET to /asd on localhost at Tue, 14 Feb 2017 17:02:44 +0100
+Finish 404 in 0.238ms
+Begin GET to /asd on localhost at Tue, 14 Feb 2017 17:09:20 +0100
+Finish 404 in 0.101ms
+Begin GET to /asd on localhost at Tue, 14 Feb 2017 17:09:22 +0100
+Finish 404 in 0.116ms
+Begin GET to /asd on localhost at Tue, 14 Feb 2017 17:13:59 +0100
+Finish 404 in 0.08ms
+Begin GET to /favicon.ico on localhost at Tue, 14 Feb 2017 17:16:05 +0100
+Finish 404 in 0.076ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 17:16:32 +0100
+Finish 404 in 0.074ms
+Begin GET to /users on localhost at Tue, 14 Feb 2017 17:16:45 +0100
+Finish 200 in 1.153ms
+Begin GET to / on localhost at Tue, 14 Feb 2017 17:17:20 +0100
+Finish 404 in 0.081ms
