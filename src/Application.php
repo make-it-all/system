@@ -29,8 +29,7 @@ class Application {
     $routes = self::get_router()->match_path($env->path, $env->method);
     foreach ($routes as $route) {
       $params = new Application\Params($route);
-       $this->dispatch($params);
-       return [200, [], ['Hello']];
+      return $this->dispatch($params);
     }
     throw new \Error\NoRouteMatches();
   }

@@ -18,7 +18,7 @@ class Base {
 
     $locals = $this->send_action($action);
     if (!$this->performed) {
-      $this->response_body = $this->render_view($params);
+      $this->response_body = $this->render_view($params, $locals);
     }
     return [$this->status, $this->response_headers, $this->response_body];
   }
@@ -32,8 +32,9 @@ class Base {
     }
   }
 
-  public function render_view() {
-
+  public function render_view($params) {
+    $view = new \Application\View($this);
+    return $view->render('new', []);
   }
 
   public function default_render($action, $locals) {
@@ -69,5 +70,9 @@ class Base {
       $this->headers['Location'] = $to;
       $this->performed = true;
     }
+  }
+
+  public function to_view_path() {
+    return strtolower(substr(get_called_class(), 0, -strlen('Controller')));
   }
 }

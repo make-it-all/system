@@ -5,7 +5,7 @@
     <title>Main App</title>
   </head>
   <body>
-
+    <?php var_dump(get_defined_vars()) ?>
     <header>
       <h2>This is the header</h2>
       <hr>
@@ -14,5 +14,11 @@
       <a href="#">Contact Us</a>
     </header>
 
+    <hr>
+    <?php $this->render_template(); ?>
+    <hr>
+    <footer>
+      THIS IS THE FOOTER
+    </footer>
   </body>
 </html>
