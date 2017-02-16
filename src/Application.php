@@ -5,6 +5,7 @@ class Application {
   public static $paths = [];
   private static $router;
   private static $env;
+  public static $request;
   public static $config;
 
   public static function run() {
@@ -24,9 +25,9 @@ class Application {
     Rack::run();
   }
 
-  public function call($env) {
-    self::$env = $env;
-    $routes = self::get_router()->match_path($env->path, $env->method);
+  public function call($request) {
+    self::$request = $request;
+    $routes = self::get_router()->match_path($request->path, $request->method);
     foreach ($routes as $route) {
       $params = new Application\Params($route);
       return $this->dispatch($params);
@@ -43,6 +44,7 @@ class Application {
     self::$paths['logs/requests'] = 'logs/requests.log';
     self::$paths['config/database'] = 'config/environment/database.php';
     self::$paths['config'] = 'config/environment/';
+    self::$paths['config/env_file'] = 'config/environment.txt';
   }
 
   public function set_autoloader() {
@@ -125,7 +127,11 @@ class Application {
   }
 
   public static function env() {
-    if (self::$env == null) { self::$env = new Application\Environment($_ENV['system_env'] ?? 'development'); }
+    if (file_exists(Application::$paths['config/env_file'])) {
+      $env_name = file_get_contents(Application::$paths['config/env_file']);
+      $env_name = trim($env_name);
+    }
+    if (self::$env == null) { self::$env = new Application\Environment($env_name ?? $_ENV['system_env'] ?? 'development'); }
     return self::$env;
   }
 
