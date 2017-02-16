@@ -4,6 +4,11 @@ class ExceptionWrapper {
 
   private static $exception_status_codes = [
     'Error\NoRouteMatches' => '404'
+    'Error\ActionNotFound' => '404',
+    'Error\ActionPerformed' => '500',
+    'Error\ErrorException' => '500',
+    'Error\FileNotFound' => '500',
+    'Error\UnknownEnvironment' => '500'
   ];
 
   private $traceback;
