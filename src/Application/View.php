@@ -22,7 +22,6 @@ class View {
   private function __render_layout($layout) {
     ob_start();
     extract($this->locals);
-    unset($this);
     require $this->__to_layout_path($layout);
     return ob_get_clean();
   }
