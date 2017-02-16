@@ -51,6 +51,7 @@ class Route {
       $last_offset = $start + $match_len;
 
       $name = $matches[1][$i][0];
+      // TODO: preg_quote
       $matcher = $matches[3][$i][0] ?? '[^\\/]+';
       $regex = "(?P<$name>$matcher)";
 

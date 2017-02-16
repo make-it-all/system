@@ -133,4 +133,20 @@ class Application {
     self::$env = new Application\Environment($env);
   }
 
+  public static function asset_path($type, $name) {
+    $dir = "public/assets/$type/";
+    if (is_dir($dir)) {
+      foreach (scandir($dir) as $file) {
+        if ($file == '.' || $file == '..') { continue; }
+        $parts = explode('.', $file);
+        $file_ext = array_pop($parts);
+        $file_name = implode('_', $parts);
+        if ($file_name == $name) {
+          return "assets/$type/$file";
+        }
+      }
+    }
+    throw new \Errors\AssetNotFound($name, $type);
+  }
+
 }

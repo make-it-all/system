@@ -2,6 +2,9 @@
 
 class Base {
 
+  const BASE_NAME = 'BaseController';
+  private static $view_folder = '';
+
   protected $headers = [];
   protected $response_body = [];
 
@@ -34,45 +37,81 @@ class Base {
 
   public function render_view($params) {
     $view = new \Application\View($this);
-    return $view->render('new', []);
+    return $view->__render_action($params['action'], []);
   }
 
-  public function default_render($action, $locals) {
-    try {
-      $this->render($action, $locals);
-    } catch(\Error\FileNotFound $e) {
-      throw new ActionNotFound($this, $action);
-    }
-  }
 
-  public function render($file, $locals=[]) {
-    if ($this->performed) {
-      throw new ActionPerformed('This action has already either rendered or redirected and can not render again.');
+
+  public static function controller_name() {
+    if (get_called_class() == get_class()) {
+      return self::BASE_NAME;
     } else {
-      $filename = \Application::$paths['views'] . '/' . $this->view_folder . '/' . $file . '.php';
-      if (!file_exists($filename)) {
-        throw new \Error\FileNotFound();
-      }
-      $this->_response_body = (function($__view_file_path) use ($locals){
-        extract($locals);
-        ob_start();
-        require $__view_file_path;
-        return ob_get_clean();
-      })($filename);
-      $this->performed = true;
+      return strtolower(substr(get_called_class(), 0, -10));
     }
   }
 
-  public function redirect($to) {
-    if ($this->performed) {
-      throw new ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
-    } else {
-      $this->headers['Location'] = $to;
-      $this->performed = true;
-    }
+  public static function view_folder() {
+    return isset(static::$view_folder) ? static::$view_folder : static::controller_name();
   }
 
-  public function to_view_path() {
-    return strtolower(substr(get_called_class(), 0, -strlen('Controller')));
+  public static function partial_paths() {
+    $paths = [static::view_folder()];
+    foreach(class_parents(get_called_class()) as $parent) {
+      $paths[] = $parent::view_folder();
+    }
+    return $paths;
   }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// public function default_render($action, $locals) {
+//   try {
+//     $this->render($action, $locals);
+//   } catch(\Error\FileNotFound $e) {
+//     throw new ActionNotFound($this, $action);
+//   }
+// }
+//
+// public function render($file, $locals=[]) {
+//   if ($this->performed) {
+//     throw new ActionPerformed('This action has already either rendered or redirected and can not render again.');
+//   } else {
+//     $filename = \Application::$paths['views'] . '/' . $this->view_folder . '/' . $file . '.php';
+//     if (!file_exists($filename)) {
+//       throw new \Error\FileNotFound();
+//     }
+//     $this->_response_body = (function($__view_file_path) use ($locals){
+//       extract($locals);
+//       ob_start();
+//       require $__view_file_path;
+//       return ob_get_clean();
+//     })($filename);
+//     $this->performed = true;
+//   }
+// }
+//
+// public function redirect($to) {
+//   if ($this->performed) {
+//     throw new ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
+//   } else {
+//     $this->headers['Location'] = $to;
+//     $this->performed = true;
+//   }
+// }
+//
+// public function to_view_path() {
+//   return strtolower(substr(get_called_class(), 0, -strlen('Controller')));
+// }

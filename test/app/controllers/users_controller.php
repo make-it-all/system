@@ -2,8 +2,6 @@
 
 class UsersController extends ApplicationController {
 
-  public $view_folder = 'users';
-
   public function index() {
     $this->users = ['Henry', 'Bob', 'Robert'];
   }
