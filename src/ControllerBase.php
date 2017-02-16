@@ -35,12 +35,10 @@ class Base {
     }
   }
 
-  public function render_view($params) {
+  public function render_view($params, $locals) {
     $view = new \Application\View($this);
-    return $view->__render_action($params['action'], []);
+    return $view->__render_action($params['action'], $locals);
   }
-
-
 
   public static function controller_name() {
     if (get_called_class() == get_class()) {

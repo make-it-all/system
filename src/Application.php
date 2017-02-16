@@ -142,7 +142,7 @@ class Application {
         $file_ext = array_pop($parts);
         $file_name = implode('_', $parts);
         if ($file_name == $name) {
-          return "assets/$type/$file";
+          return "/assets/$type/$file";
         }
       }
     }

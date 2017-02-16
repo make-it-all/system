@@ -46,6 +46,7 @@ class View {
 
   public function yield() {
     if (isset($this->action)) {
+      extract($this->locals);
       require 'app/views/'.$this->controller->view_folder().'/'.$this->action.'.php';
     }
   }
@@ -72,8 +73,18 @@ class View {
     echo "<script src='$script_path'></script>";
   }
 
-  public function link_to($text, $href) {
+  public function link_to($text, $href='#') {
     echo "<a href='$href'>$text</a>";
+  }
+
+  public function image_tag($image, $alt=null) {
+    $image_path = \Application::asset_path('images', $image);
+    $alt = $alt ?? $image;
+    echo "<img src='$image_path' alt='$alt' />";
+  }
+
+  public function icon($icon) {
+    echo "<i class='fa fa-$icon' aria-hidden='true'></i>";
   }
 
 }
