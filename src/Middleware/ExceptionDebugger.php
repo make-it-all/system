@@ -2,6 +2,10 @@
 
 class ExceptionDebugger {
 
+  static $templates = [
+    'Error\NoRouteMatches' => 'page_not_found'
+  ];
+
   public function __construct($app) {
     $this->app = $app;
   }
@@ -26,8 +30,6 @@ class ExceptionDebugger {
   private function render_exception($env, $exception) {
     $wrapper = new ExceptionWrapper($exception);
 
-    $this->log($wrapper);
-
     if (\Application::$config['debug_exceptions']) {
       $status = $wrapper->getHttpStatus();
       $body = $this->render_body($env, $wrapper);
@@ -37,12 +39,7 @@ class ExceptionDebugger {
     }
   }
 
-  private function log() {
-    #TODO: logging
-  }
-
   private function render_body($env, $wrapper) {
-    $file = $wrapper->to_template_path();
 
     $locals = [
       'error_type' => $wrapper->getType(),
@@ -52,6 +49,7 @@ class ExceptionDebugger {
       'path' => $env->path,
     ];
 
+    $file = $this->to_template_path($wrapper);
     return $this->render_file($file, $locals);
   }
 
@@ -61,6 +59,11 @@ class ExceptionDebugger {
     ob_start();
     require $__path;
     return ob_get_clean();
+  }
+
+  public function to_template_path($wrapper) {
+    $template = self::$templates[$wrapper->getType()] ?? 'standard';
+    return "templates/$template.php";
   }
 
 }

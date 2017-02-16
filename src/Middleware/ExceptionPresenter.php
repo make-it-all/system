@@ -44,18 +44,10 @@ class ExceptionPresenter {
   }
 
   private function render_body($env, $wrapper) {
-    $file = $this->template_for_status($wrapper->getHttpStatus());
-    $file = "templates/$file.php";
+    $status = $wrapper->getHttpStatus();
+    $file = "templates/$status.php";
 
-    $locals = [
-      'error_type' => $wrapper->getType(),
-      'error_message' => $wrapper->getMessage(),
-      'traceback' => $wrapper->getTrace(),
-      'env' => $env,
-      'path' => $env->path,
-    ];
-
-    return $this->render_file($file, $locals);
+    return $this->render_file($file);
   }
 
 
@@ -65,10 +57,5 @@ class ExceptionPresenter {
     require $__path;
     return ob_get_clean();
   }
-
-  public function template_for_status($status) {
-    return ['404' => '404', '500'=>'500'][$status] ?? '500';
-  }
-
 
 }

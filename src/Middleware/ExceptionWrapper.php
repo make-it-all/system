@@ -3,7 +3,7 @@
 class ExceptionWrapper {
 
   private static $exception_status_codes = [
-    'Error\NoRouteMatches' => 'page_not_found'
+    'Error\NoRouteMatches' => '404'
   ];
 
   private $traceback;
@@ -13,10 +13,7 @@ class ExceptionWrapper {
   }
 
   public function getHttpStatus() {
-    if (array_key_exists($this->getType(), self::$exception_status_codes)) {
-      $status = self::$exception_status_codes[$this->getType()];
-    }
-    return $status ?? 500;
+    return self::$exception_status_codes[$this->getType()] ?? 500;
   }
 
   public function getMessage() {
@@ -45,14 +42,6 @@ class ExceptionWrapper {
       }, $this->exception->getTrace());
     }
     return $this->traceback;
-  }
-
-  public function to_template_path() {
-    if (array_key_exists($this->getType(), self::$exception_status_codes)) {
-      $template = self::$exception_status_codes[$this->getType()];
-    }
-    $template = $template ?? 'standard';
-    return "templates/$template.php";
   }
 
   public function __call($method, $args) {
