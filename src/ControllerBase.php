@@ -79,13 +79,13 @@ class Base {
 //   try {
 //     $this->render($action, $locals);
 //   } catch(\Error\FileNotFound $e) {
-//     throw new ActionNotFound($this, $action);
+//     throw new \Error\ActionNotFound($this, $action);
 //   }
 // }
 //
 // public function render($file, $locals=[]) {
 //   if ($this->performed) {
-//     throw new ActionPerformed('This action has already either rendered or redirected and can not render again.');
+//     throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
 //   } else {
 //     $filename = \Application::$paths['views'] . '/' . $this->view_folder . '/' . $file . '.php';
 //     if (!file_exists($filename)) {
@@ -103,7 +103,7 @@ class Base {
 //
 // public function redirect($to) {
 //   if ($this->performed) {
-//     throw new ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
+//     throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
 //   } else {
 //     $this->headers['Location'] = $to;
 //     $this->performed = true;
