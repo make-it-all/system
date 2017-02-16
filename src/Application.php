@@ -46,7 +46,7 @@ class Application {
     self::$paths['config/env_file'] = 'config/environment.txt';
   }
 
-  public function set_autoloader() {
+  public static function set_autoloader() {
     spl_autoload_register(function($class){
       if (substr($class, -10) == 'Controller') {
         require_once self::$paths['controllers'] . self::toUnderscore($class) . '.php';
