@@ -88,7 +88,8 @@ class Base {
     $this->performed = true;
   }
 
-  public function redirect_to($to) {
+  public function redirect_to($to, $flash) {
+    \Application::flash()->next($flash);
     if ($this->performed) {
       throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
     }

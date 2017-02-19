@@ -2,7 +2,14 @@
 <html>
   <body>
       <h1>Users</h1>
-      <?php exit(print_r(get_defined_vars(), true)); ?>
+
+      <?php if (\Application::flash()->any()): ?>
+        <ul>
+          <?php foreach (\Application::flash() as $key=>$msg): ?>
+            <li class="flash flash-<?php echo $key ?>"><?php echo $msg ?></li>
+          <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
 
       <ul>
         <?php foreach($users as $user): ?>

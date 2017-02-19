@@ -136,7 +136,6 @@ class View {
     $record_name = strtolower(get_class($record));
     $field_name = $record_name . "[$name]";
     $field_label = ucfirst($name);
-    exit((string)$record->terms);
     $checked = $record->$name == true;
 
     echo "<div class='field'>";
