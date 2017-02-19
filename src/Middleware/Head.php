@@ -12,9 +12,8 @@ class Head {
       list($status, $headers, $body) = $this->app->call($env);
       return [$status, $headers, []];
     } else {
-      $env->method = 'GET';
       return $this->app->call($env);
     }
   }
-  
+
 }

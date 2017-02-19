@@ -72,8 +72,12 @@ class View {
     echo "<script src='$script_path'></script>";
   }
 
-  public function link_to($text, $href='#') {
-    return "<a href='$href'>$text</a>";
+  public function link_to($text, $href='#', $method=null) {
+    if (is_null($method)) {
+      return "<a href='$href'>$text</a>";
+    } else {
+      return "<a href='$href' data-method='$method'>$text</a>";
+    }
   }
 
   public function image_tag($image, $alt=null) {
@@ -90,4 +94,71 @@ class View {
     return \Application::I18n($key);
   }
 
+
+  public function form_for($record, $url) {
+    echo "<form action='$url' method='POST'>";
+    if ($record->is_new_record()) {
+      $this->hidden_field($record, '_method', 'PUT');
+    }
+  }
+
+  public function abstract_field($record, $type, $name, $value=null) {
+    $record_name = strtolower(get_class($record));
+    $label_text = ucfirst($name);
+    $field_name = $record_name . "[$name]";
+    if (is_null($value)) { $value = $record->$name; }
+    echo "<div class='field'>";
+      echo "<label for='{$name}_field'>$label_text</label>";
+      echo "<input type='$type' id='{$name}_field' name='$field_name' value='$value' />";
+    echo "</div>";
+  }
+
+  public function text_field($record, $name, $value=null) {
+    $this->abstract_field($record, 'text', $name, $value);
+  }
+
+  public function hidden_field($record, $name, $value=null) {
+    $record_name = strtolower(get_class($record));
+    $field_name = $record_name . "[$name]";
+    if (is_null($value)) { $value = $record->$name; }
+    echo "<input type='hidden' name='$field_name' value='$value' />";
+  }
+
+  public function password_field($record, $name, $value=null) {
+    $this->abstract_field($record, 'password', $name, $value);
+  }
+
+  public function checkbox_field($record, $name, $value=null) {
+    $field_label = ucfirst($name);
+    if (is_null($value)) { $value = $record->$name; }
+    $name = strtolower(get_class($record))."_$name";
+    echo "<div class='field'>";
+    echo "<label for='{$name}_field'>$field_label</label>";
+    echo "<input type='hidden' name='$name' value='0' />";
+    echo "<input type='checkbox' id='{$name}_field' name='$name' value='$value' />";
+    echo "</div>";
+  }
+
+  public function submit_field($text) {
+    echo "<input type='submit' name='commit' value='$text' />";
+  }
+
 }
+
+
+
+<?php $this->form_for($user, '/users'); ?>
+  <h1>New User</h1>
+  <?php $this->text_field($user, 'name'); ?>
+  <?php $this->text_field($user, 'email'); ?>
+  <?php $this->password_field($user, 'password'); ?>
+  <fieldset>
+    <legend>Role</legend>
+    <?php $this->checkbox_field($user, 'is_operator'); ?>
+    <?php $this->checkbox_field($user, 'is_specialist'); ?>
+    <?php $this->checkbox_field($user, 'is_admin'); ?>
+  </fieldset>
+  <div class="actions">
+    <?php $this->submit_field('Create User'); ?>
+  </div>
+</form>
