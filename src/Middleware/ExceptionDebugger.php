@@ -12,7 +12,7 @@ class ExceptionDebugger {
 
   public function call($env) {
     set_error_handler(function ($errorNumber, $errorText, $errorFile, $errorLine ) {
-      throw new \Application\Error\ErrorException($errorText, 0, $errorNumber, $errorFile, $errorLine);
+      throw new \ErrorException($errorText, 0, $errorNumber, $errorFile, $errorLine);
     });
 
     try {

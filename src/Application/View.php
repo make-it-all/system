@@ -12,7 +12,6 @@ class View {
   public function __render_action($action, $locals=[]) {
     $this->action = $action;
     $this->locals = $locals;
-    var_dump($locals);
     if (isset($this->controller->layout)) {
       return $this->__render_layout($this->controller->layout);
     } else {
@@ -133,14 +132,21 @@ class View {
     echo "<input type='hidden' name='$field_name' value='$value' />";
   }
 
-  public function checkbox_field($record, $name, $value=null) {
+  public function checkbox_field($record, $name, $value='1') {
+    $record_name = strtolower(get_class($record));
+    $field_name = $record_name . "[$name]";
     $field_label = ucfirst($name);
-    if (is_null($value)) { $value = $record->$name; }
-    $name = strtolower(get_class($record))."_$name";
+    exit((string)$record->terms);
+    $checked = $record->$name == true;
+
     echo "<div class='field'>";
-    echo "<label for='{$name}_field'>$field_label</label>";
-    echo "<input type='hidden' name='$name' value='0' />";
-    echo "<input type='checkbox' id='{$name}_field' name='$name' value='$value' />";
+      echo "<label for='{$name}_field'>$field_label</label>";
+      echo "<input type='hidden' name='$field_name' value='0' />";
+      if ($checked) {
+        echo "<input type='checkbox' id='{$name}_field' name='$field_name' value='$value' checked='checked'/>";
+      } else {
+        echo "<input type='checkbox' id='{$name}_field' name='$field_name' value='$value'/>";
+      }
     echo "</div>";
   }
 

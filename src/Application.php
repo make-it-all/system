@@ -169,7 +169,7 @@ class Application {
     $steps = explode('.', $key);
     $current = self::$i18n;
     foreach($steps as $step) {
-      if (array_key_exists($key, $current)) {
+      if (array_key_exists($step, $current)) {
         $current = $current[$step];
       } else {
         return $i18n['no_translation_available'] ?? 'no translation';

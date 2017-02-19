@@ -19,8 +19,14 @@ class Params implements \ArrayAccess, \Iterator {
     if (array_key_exists($key, $this->vars)) {
       return new self($this->vars[$key], true);
     } else {
-      throw new Error\MissingParam($key);
+      throw new \Error\MissingParam($key);
     }
+  }
+
+  public function permit(...$attrs) {
+    $attrs = array_flip($attrs);
+    $allowed = array_intersect_key($this->vars, $attrs);
+    return new self($allowed, true);
   }
 
 
@@ -44,23 +50,18 @@ class Params implements \ArrayAccess, \Iterator {
 
   //----- Iterator - Methods
   public function current(){
-    $this->load();
     return current($this->vars);
   }
   public function next() {
-    $this->load();
     return next($this->vars);
   }
   public function key() {
-    $this->load();
     return key($this->vars);
   }
   public function valid() {
-    $this->load();
     return $this->offsetExists($this->key());
   }
   public function rewind() {
-    $this->load();
     return reset($this->vars);
   }
 
