@@ -1,3 +1,3 @@
-<?php namespace Error;
+<?php namespace Application\Error;
 
 class FileNotFound extends \Exception {}

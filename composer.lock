@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4abfc6424adc238fbcb9d66cbcf8d618",
     "content-hash": "0bc4a30bd5b08144351489c3efa8fbd8",
     "packages": [
         {
@@ -13,18 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/make-it-all/chronicle.git",
-                "reference": "ca744e0fe79f921b2a8099359f75101e4063c357"
+                "reference": "4c80a7e6179e529dd42e437fb74a44feccded90b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/make-it-all/chronicle/zipball/ca744e0fe79f921b2a8099359f75101e4063c357",
-                "reference": "ca744e0fe79f921b2a8099359f75101e4063c357",
+                "url": "https://api.github.com/repos/make-it-all/chronicle/zipball/4c80a7e6179e529dd42e437fb74a44feccded90b",
+                "reference": "4c80a7e6179e529dd42e437fb74a44feccded90b",
                 "shasum": ""
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Chronicle\\": "src",
+                    "Chronicle\\Error\\": "src/Error",
                     "Chronicle\\Connection\\": "src/connection",
                     "Chronicle\\Validators\\": "src/validators",
                     "Chronicle\\Query\\": "src/query",
@@ -42,7 +42,7 @@
                 "source": "https://github.com/make-it-all/chronicle/tree/master",
                 "issues": "https://github.com/make-it-all/chronicle/issues"
             },
-            "time": "2017-02-19 15:21:01"
+            "time": "2017-02-19 18:28:49"
         },
         {
             "name": "hexmodr/rack",

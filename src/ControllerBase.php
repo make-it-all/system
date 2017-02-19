@@ -5,7 +5,7 @@ class Base {
   const BASE_NAME = 'BaseController';
   private static $view_folder = '';
   private static $allowed_vars = ['params'];
-  
+
   private $pre_action_vars;
   private $action_vars;
 
@@ -82,7 +82,7 @@ class Base {
 
   public function render($template) {
     if ($this->performed) {
-      throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
+      throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
     }
     $this->response_body = $this->render_view($template, $this->action_vars());
     $this->performed = true;
@@ -90,7 +90,7 @@ class Base {
 
   public function redirect_to($to) {
     if ($this->performed) {
-      throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
+      throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
     }
     $this->response_headers['Location'] = $to;
     $this->performed = true;
@@ -115,17 +115,17 @@ class Base {
 //   try {
 //     $this->render($action, $locals);
 //   } catch(\Error\FileNotFound $e) {
-//     throw new \Error\ActionNotFound($this, $action);
+//     throw new \Application\Error\ActionNotFound($this, $action);
 //   }
 // }
 //
 // public function render($file, $locals=[]) {
 //   if ($this->performed) {
-//     throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
+//     throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
 //   } else {
 //     $filename = \Application::$paths['views'] . '/' . $this->view_folder . '/' . $file . '.php';
 //     if (!file_exists($filename)) {
-//       throw new \Error\FileNotFound();
+//       throw new \Application\Error\FileNotFound();
 //     }
 //     $this->_response_body = (function($__view_file_path) use ($locals){
 //       extract($locals);
@@ -139,7 +139,7 @@ class Base {
 //
 // public function redirect($to) {
 //   if ($this->performed) {
-//     throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
+//     throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
 //   } else {
 //     $this->headers['Location'] = $to;
 //     $this->performed = true;

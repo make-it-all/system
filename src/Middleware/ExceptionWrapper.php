@@ -3,12 +3,20 @@
 class ExceptionWrapper {
 
   private static $exception_status_codes = [
-    'Error\NoRouteMatches' => '404',
     'Error\ActionNotFound' => '404',
     'Error\ActionPerformed' => '500',
+    'Error\AssetNotFound' => '404',
     'Error\ErrorException' => '500',
     'Error\FileNotFound' => '500',
+    'Error\MissingParam' => '500',
+    'Error\MissingPartial' => '500',
+    'Error\NoRouteMatches' => '404',
     'Error\UnknownEnvironment' => '500'
+    'Error\ColumnTypeUnknown' => '500',
+    'Error\InvalidAttribute' => '500',
+    'Error\MethodNotFound' => '500',
+    'Error\RecordNotFound' => '404'
+
   ];
 
   private $traceback;

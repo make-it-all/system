@@ -60,7 +60,7 @@ class View {
         return;
       }
     }
-    throw new \Exception('Partial Not Found');
+    throw new Error\MissingPartial('Partial Not Found');
   }
 
   public function include_stylesheet($stylesheet) {
