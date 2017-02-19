@@ -12,6 +12,7 @@ class View {
   public function __render_action($action, $locals=[]) {
     $this->action = $action;
     $this->locals = $locals;
+    var_dump($locals);
     if (isset($this->controller->layout)) {
       return $this->__render_layout($this->controller->layout);
     } else {
@@ -97,8 +98,8 @@ class View {
 
   public function form_for($record, $url) {
     echo "<form action='$url' method='POST'>";
-    if ($record->is_new_record()) {
-      $this->hidden_field($record, '_method', 'PUT');
+    if ($record->is_persisted()) {
+      $this->hidden_field($record, '__method', 'PUT');
     }
   }
 
@@ -117,15 +118,19 @@ class View {
     $this->abstract_field($record, 'text', $name, $value);
   }
 
+  public function password_field($record, $name, $value=null) {
+    $this->abstract_field($record, 'password', $name, $value);
+  }
+
+  public function email_field($record, $name, $value=null) {
+    $this->abstract_field($record, 'email', $name, $value);
+  }
+
   public function hidden_field($record, $name, $value=null) {
     $record_name = strtolower(get_class($record));
     $field_name = $record_name . "[$name]";
     if (is_null($value)) { $value = $record->$name; }
     echo "<input type='hidden' name='$field_name' value='$value' />";
-  }
-
-  public function password_field($record, $name, $value=null) {
-    $this->abstract_field($record, 'password', $name, $value);
   }
 
   public function checkbox_field($record, $name, $value=null) {
@@ -139,7 +144,7 @@ class View {
     echo "</div>";
   }
 
-  public function submit_field($text) {
+  public function submit_button($text) {
     echo "<input type='submit' name='commit' value='$text' />";
   }
 

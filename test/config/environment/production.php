@@ -2,7 +2,7 @@
 
 $serve_static_assets = true;
 $show_exceptions = true;
-$debug_exceptions = false;
+$debug_exceptions = true;
 
 $database = [
   'driver'    => 'mysql',

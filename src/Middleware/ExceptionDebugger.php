@@ -29,7 +29,6 @@ class ExceptionDebugger {
 
   private function render_exception($env, $exception) {
     $wrapper = new ExceptionWrapper($exception);
-
     if (\Application::$config['debug_exceptions']) {
       $status = $wrapper->getHttpStatus();
       $body = $this->render_body($env, $wrapper);
@@ -40,7 +39,6 @@ class ExceptionDebugger {
   }
 
   private function render_body($env, $wrapper) {
-
     $locals = [
       'error_type' => $wrapper->getType(),
       'error_message' => $wrapper->getMessage(),

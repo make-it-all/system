@@ -4,12 +4,19 @@ class Base {
 
   const BASE_NAME = 'BaseController';
   private static $view_folder = '';
+  private static $allowed_vars = ['params'];
+  
   private $pre_action_vars;
+  private $action_vars;
 
+  protected $params;
+
+  protected $status;
   protected $response_headers = [];
   protected $response_body = [];
 
   protected $performed = false;
+
 
 
   public function process($params) {
@@ -22,9 +29,9 @@ class Base {
     $this->response_headers = [];
     $this->response_body = null;
 
-    $locals = $this->send_action($action);
+    $this->send_action($action);
     if (!$this->performed) {
-      $this->response_body = $this->render_view($template, $this->action_locals());
+      $this->response_body = $this->render_view($template, $this->action_vars());
     }
     return [$this->status, $this->response_headers, $this->response_body];
   }
@@ -36,12 +43,16 @@ class Base {
     }
   }
 
-  private function action_locals() {
-    if (isset($this->pre_action_vars)) {
-      return array_diff_key(get_object_vars($this), $this->pre_action_vars);
-    } else {
-      return [];
+  private function action_vars() {
+    if (is_null($this->action_vars)) {
+      $this->action_vars = [];
+      if (isset($this->pre_action_vars)) {
+        $locals = array_diff_key(get_object_vars($this), $this->pre_action_vars);
+      }
+      $allowed = array_intersect_key(get_object_vars($this), array_flip(self::$allowed_vars));
+      $this->action_vars = array_merge($locals, $allowed);
     }
+    return $this->action_vars;
   }
 
   public function render_view($template, $locals) {
@@ -73,11 +84,11 @@ class Base {
     if ($this->performed) {
       throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
     }
-    $this->response_body = $this->render_view($template, $this->action_locals());
+    $this->response_body = $this->render_view($template, $this->action_vars());
     $this->performed = true;
   }
 
-  public function redirect($to) {
+  public function redirect_to($to) {
     if ($this->performed) {
       throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
     }

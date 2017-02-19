@@ -4,11 +4,23 @@ class Params implements \ArrayAccess, \Iterator {
 
   private $vars = [];
 
-  public function __construct($request_glob) {
-    $this->vars = \Application::$request->request_vars;
-    $this->vars = array_merge($request_glob['params']);
-    $this->vars['controller'] = $request_glob['controller'];
-    $this->vars['action'] = $request_glob['action'];
+  public function __construct($request_glob, $from_array=false) {
+    if ($from_array) {
+      $this->vars = $request_glob;
+    } else {
+      $this->vars = \Application::$request->request_vars;
+      $this->vars = array_merge($this->vars, $request_glob['params']);
+      $this->vars['controller'] = $request_glob['controller'];
+      $this->vars['action'] = $request_glob['action'];
+    }
+  }
+
+  public function require($key) {
+    if (array_key_exists($key, $this->vars)) {
+      return new self($this->vars[$key], true);
+    } else {
+      throw new Error\MissingParam($key);
+    }
   }
 
 

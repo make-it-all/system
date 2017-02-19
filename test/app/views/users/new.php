@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-      <h1>Create User!</h1>
-      <?php var_dump(get_defined_vars()); ?>
-      <?php print_r($this->i('welcome')); ?>
-  </body>
-</html>
+<h1>Create User!</h1>
+<?php print_r($this->i('welcome')); ?>
+
+<?php if ($user->errors()->any()): ?>
+  <?php var_dump($user->errors()->full_messages()); ?>
+<?php endif; ?>
+
+<?php $this->form_for($user, '/users'); ?>
+
+  <?php $this->text_field($user, 'name'); ?>
+  <?php $this->email_field($user, 'email'); ?>
+  <?php $this->text_field($user, 'admin'); ?>
+  <?php $this->submit_button('Create User') ?>
+
+</form>
