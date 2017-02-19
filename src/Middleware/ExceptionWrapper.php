@@ -11,7 +11,7 @@ class ExceptionWrapper {
     'Error\MissingParam' => '500',
     'Error\MissingPartial' => '500',
     'Error\NoRouteMatches' => '404',
-    'Error\UnknownEnvironment' => '500'
+    'Error\UnknownEnvironment' => '500',
     'Error\ColumnTypeUnknown' => '500',
     'Error\InvalidAttribute' => '500',
     'Error\MethodNotFound' => '500',
