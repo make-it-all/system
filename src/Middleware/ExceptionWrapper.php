@@ -15,7 +15,8 @@ class ExceptionWrapper {
     'Error\ColumnTypeUnknown' => '500',
     'Error\InvalidAttribute' => '500',
     'Error\MethodNotFound' => '500',
-    'Error\RecordNotFound' => '404'
+    'Error\RecordNotFound' => '404',
+    'Error\NotImplemented' => '500'
 
   ];
 
