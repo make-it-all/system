@@ -149,7 +149,7 @@ class Application {
         }
       }
     }
-    throw new Error\AssetNotFound($name, $type);
+    throw new \Application\Error\AssetNotFound("$name, $type");
   }
 
   private static function language() {
