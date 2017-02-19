@@ -33,7 +33,7 @@ class Application {
       $params = new Application\Params($route);
       return $this->dispatch($params);
     }
-    throw new \Error\NoRouteMatches();
+    throw new Error\NoRouteMatches();
   }
 
   public static function set_default_paths() {
@@ -149,7 +149,7 @@ class Application {
         }
       }
     }
-    throw new \Errors\AssetNotFound($name, $type);
+    throw new Error\AssetNotFound($name, $type);
   }
 
   private static function language() {

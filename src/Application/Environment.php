@@ -13,7 +13,7 @@ class Environment {
     if (in_array($env, Environment::ENVS)) {
       $this->env = $env;
     } else {
-      throw new \Errors\UnknownEnvironment();
+      throw new Error\UnknownEnvironment();
     }
   }
 
