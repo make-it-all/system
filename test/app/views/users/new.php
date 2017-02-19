@@ -10,6 +10,7 @@
   <?php $this->text_field($user, 'name'); ?>
   <?php $this->email_field($user, 'email'); ?>
   <?php $this->text_field($user, 'admin'); ?>
+  <?php $this->checkbox_field($user, 'terms'); ?>
   <?php $this->submit_button('Create User') ?>
 
 </form>

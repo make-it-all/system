@@ -28,8 +28,7 @@ class UsersController extends ApplicationController {
   }
 
   private function user_params() {
-    exit(print_r($this->params->require('usera'), true));
-    return ['name'=>'Henry', 'email'=>'hasd', 'admin'=>1];
+    return $this->params->require('user')->permit('name', 'email', 'admin', 'terms');
   }
 
 }

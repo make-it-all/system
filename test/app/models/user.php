@@ -6,12 +6,14 @@ class User extends \Chronicle\Base {
 
   public function __construct(...$args) {
     parent::__construct(...$args);
-    $this->add_attribute('phone_number')->set_initial_value('no phone number');
+    $this->add_attribute('terms');
   }
 
   public static $validations = [
-    'admin' => ['presence' => true],
-    'phone_number' => ['presence' => true, 'numericality'=>true],
+    'name' => ['presence' => true],
+    'email' => ['presence' => true],
+    'terms' => ['acceptance' => true],
+    'admin' => ['presence' => true]
   ];
 
 }
