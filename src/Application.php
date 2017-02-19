@@ -7,6 +7,7 @@ class Application {
   private static $env;
   public static $request;
   public static $config;
+  public static $i18n;
 
   public static function run() {
     self::set_default_paths();
@@ -32,7 +33,7 @@ class Application {
       $params = new Application\Params($route);
       return $this->dispatch($params);
     }
-    throw new \Errors\NoRouteMatches();
+    throw new \Error\NoRouteMatches();
   }
 
   public static function set_default_paths() {
@@ -44,6 +45,7 @@ class Application {
     self::$paths['logs/requests'] = 'logs/requests.log';
     self::$paths['config'] = 'config/environment/';
     self::$paths['config/env_file'] = 'config/environment.txt';
+    self::$paths['config/i18n'] = 'config/i18n/';
   }
 
   public static function set_autoloader() {
@@ -148,6 +150,23 @@ class Application {
       }
     }
     throw new \Errors\AssetNotFound($name, $type);
+  }
+
+  private static function language() {
+    return self::$config['language'];
+  }
+
+  private static function load_i18n() {
+    $language = self::language();
+    require self::$paths['config/i18n']."$language.php";
+    self::$i18n = get_defined_vars();
+  }
+
+  public static function I18n($key) {
+    if (self::$i18n === null) {
+      self::load_i18n();
+    }
+    return self::$i18n[$key] ?? 'no translation available';
   }
 
 }

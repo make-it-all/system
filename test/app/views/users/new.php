@@ -7,6 +7,6 @@
   <body>
       <h1>Create User!</h1>
       <?php var_dump(get_defined_vars()); ?>
-      <?php echo $params['id']; ?>
+      <?php print_r($this->i('welcome')); ?>
   </body>
 </html>

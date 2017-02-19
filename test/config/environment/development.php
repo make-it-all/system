@@ -3,6 +3,7 @@
 $serve_static_assets = true;
 $show_exceptions = true;
 $debug_exceptions = true;
+$language = 'de';
 
 $database = [
   'driver'    => 'mysql',

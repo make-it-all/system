@@ -4,8 +4,9 @@ class Base {
 
   const BASE_NAME = 'BaseController';
   private static $view_folder = '';
+  private $pre_action_vars;
 
-  protected $headers = [];
+  protected $response_headers = [];
   protected $response_body = [];
 
   protected $performed = false;
@@ -13,6 +14,8 @@ class Base {
 
   public function process($params) {
     $action = $params['action'];
+    $template = $params['action'];
+
     $this->params = $params;
 
     $this->status = 200;
@@ -21,23 +24,29 @@ class Base {
 
     $locals = $this->send_action($action);
     if (!$this->performed) {
-      $this->response_body = $this->render_view($params, $locals);
+      $this->response_body = $this->render_view($template, $this->action_locals());
     }
     return [$this->status, $this->response_headers, $this->response_body];
   }
 
   public function send_action($action) {
     if (method_exists($this, $action)) {
-      $pre_vars = get_object_vars($this);
+      $this->pre_action_vars = get_object_vars($this);
       $this->$action();
-      $locals = array_diff_key(get_object_vars($this), $pre_vars);
-      return $locals;
     }
   }
 
-  public function render_view($params, $locals) {
+  private function action_locals() {
+    if (isset($this->pre_action_vars)) {
+      return array_diff_key(get_object_vars($this), $this->pre_action_vars);
+    } else {
+      return [];
+    }
+  }
+
+  public function render_view($template, $locals) {
     $view = new \Application\View($this);
-    return $view->__render_action($params['action'], $locals);
+    return $view->__render_action($template, $locals);
   }
 
   public static function controller_name() {
@@ -58,6 +67,22 @@ class Base {
       $paths[] = $parent::view_folder();
     }
     return $paths;
+  }
+
+  public function render($template) {
+    if ($this->performed) {
+      throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not render again.');
+    }
+    $this->response_body = $this->render_view($template, $this->action_locals());
+    $this->performed = true;
+  }
+
+  public function redirect($to) {
+    if ($this->performed) {
+      throw new \Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
+    }
+    $this->response_headers['Location'] = $to;
+    $this->performed = true;
   }
 
 }

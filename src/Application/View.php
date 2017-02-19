@@ -73,17 +73,21 @@ class View {
   }
 
   public function link_to($text, $href='#') {
-    echo "<a href='$href'>$text</a>";
+    return "<a href='$href'>$text</a>";
   }
 
   public function image_tag($image, $alt=null) {
     $image_path = \Application::asset_path('images', $image);
     $alt = $alt ?? $image;
-    echo "<img src='$image_path' alt='$alt' />";
+    return "<img src='$image_path' alt='$alt' />";
   }
 
   public function icon($icon) {
-    echo "<i class='fa fa-$icon' aria-hidden='true'></i>";
+    return "<i class='fa fa-$icon' aria-hidden='true'></i>";
+  }
+
+  public function i($key) {
+    return \Application::I18n($key);
   }
 
 }
