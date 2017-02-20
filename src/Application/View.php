@@ -103,7 +103,7 @@ class View {
   }
 
   public function abstract_field($record, $type, $name, $value=null) {
-    $record_name = strtolower(get_class($record));
+    $record_name = is_string($record) ? $record : strtolower(get_class($record));
     $label_text = ucfirst($name);
     $field_name = $record_name . "[$name]";
     if (is_null($value)) { $value = $record->$name; }

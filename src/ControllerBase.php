@@ -59,7 +59,7 @@ class Base {
         $locals = array_diff_key(get_object_vars($this), $this->pre_action_vars);
       }
       $allowed = array_intersect_key(get_object_vars($this), array_flip(self::$allowed_vars));
-      $this->action_vars = array_merge($locals, $allowed);
+      $this->action_vars = array_merge($locals ?? [], $allowed);
     }
     return $this->action_vars;
   }
