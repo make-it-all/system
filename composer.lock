@@ -1,0 +1,96 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "d0c663bc8b9e99326b90208303d240e1",
+    "content-hash": "0bc4a30bd5b08144351489c3efa8fbd8",
+    "packages": [
+        {
+            "name": "hexmodr/chronicle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/make-it-all/chronicle.git",
+                "reference": "d112e65d50a582d239ccf13f608d33fe644a2b5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/make-it-all/chronicle/zipball/d112e65d50a582d239ccf13f608d33fe644a2b5c",
+                "reference": "d112e65d50a582d239ccf13f608d33fe644a2b5c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Chronicle\\": "src",
+                    "Chronicle\\Error\\": "src/Error",
+                    "Chronicle\\Connection\\": "src/connection",
+                    "Chronicle\\Validators\\": "src/validators",
+                    "Chronicle\\Query\\": "src/query",
+                    "Chronicle\\Query\\Parts\\": "src/query/parts"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Henry Morgan",
+                    "email": "henry@cd2solutions.co.uk"
+                }
+            ],
+            "description": "Chronicle is a database abstraction system similar to ActiveRecord",
+            "support": {
+                "source": "https://github.com/make-it-all/chronicle/tree/master",
+                "issues": "https://github.com/make-it-all/chronicle/issues"
+            },
+            "time": "2017-02-20 01:43:42"
+        },
+        {
+            "name": "hexmodr/rack",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/make-it-all/rack.git",
+                "reference": "f1c72f4235583012d09faa04b87bb2b6bf748d3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/make-it-all/rack/zipball/f1c72f4235583012d09faa04b87bb2b6bf748d3e",
+                "reference": "f1c72f4235583012d09faa04b87bb2b6bf748d3e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Rack.php"
+                ],
+                "psr-4": {
+                    "Rack\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Henry Morgan",
+                    "email": "henry@cd2solutions.co.uk"
+                }
+            ],
+            "description": "Rack Server interface for php applications",
+            "support": {
+                "source": "https://github.com/make-it-all/rack/tree/master",
+                "issues": "https://github.com/make-it-all/rack/issues"
+            },
+            "time": "2017-02-19 00:30:49"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "hexmodr/rack": 20,
+        "hexmodr/chronicle": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
