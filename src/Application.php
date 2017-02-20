@@ -165,7 +165,6 @@ class Application {
         return $language = 'zh';
       default:
         return $language = 'en';
-      }
     }
   }
 
