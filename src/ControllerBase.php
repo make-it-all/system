@@ -29,6 +29,7 @@ class Base {
     $this->response_headers = [];
     $this->response_body = null;
 
+    $this->pre_action_vars = get_object_vars($this);
     $this->send_before_action($action);
     if (!$this->performed) {
       $this->send_action($action);
@@ -47,7 +48,6 @@ class Base {
 
   public function send_action($action) {
     if (method_exists($this, $action)) {
-      $this->pre_action_vars = get_object_vars($this);
       $this->$action();
     }
   }
