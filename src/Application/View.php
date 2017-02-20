@@ -118,7 +118,7 @@ class View {
       echo "<form action='$url' method='POST' $attr_html>";
     } else {
       echo "<form action='$url/$record->id' method='POST' $attr_html>";
-      $this->hidden_field($record, '__method', 'PUT');
+      echo '<input type="hidden" name="__method" value="PUT">';
     }
   }
 
