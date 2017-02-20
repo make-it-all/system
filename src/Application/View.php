@@ -156,7 +156,7 @@ class View {
     if (is_null($value)) { $value = $record->$name; }
     echo "<div class='field'>";
       echo "<label for='{$name}_field'>$label_text</label>";
-      echo "<textarea name='$field_name' value='$value' ></textarea>";
+      echo "<textarea name='$field_name'>$value</textarea>";
     echo "</div>";
   }
 
