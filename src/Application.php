@@ -156,13 +156,13 @@ class Application {
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     switch ($lang){
     case "de":
-      return self::$config['de'];
+      return $language = ['de'];
       break;
     case "en":
-      return self::$config['en'];
+      return $language = ['en'];
       break;
     default:
-      return self::$config['en'];
+      return $language = ['en'];
       break;
     }
   }
