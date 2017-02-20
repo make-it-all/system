@@ -52,7 +52,7 @@ class Base {
     }
   }
 
-  private function action_vars() {
+  public function action_vars() {
     if (is_null($this->action_vars)) {
       $this->action_vars = [];
       if (isset($this->pre_action_vars)) {

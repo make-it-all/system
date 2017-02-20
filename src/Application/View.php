@@ -51,6 +51,7 @@ class View {
   }
 
   public function render($partial_name, $locals=[]) {
+    $locals = array_merge($this->controller->action_vars(), $locals);
     $partial_paths = $this->__to_partial_paths($partial_name);
     foreach($partial_paths as $path) {
       if (file_exists($path)) {
