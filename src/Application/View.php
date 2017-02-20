@@ -86,9 +86,9 @@ class View {
     }
     $attr_html = implode(' ', $attr_arr);
     if (isset($method)) {
-      return "<a $attr_html href='$href'>$text</a>";
-    } else {
       return "<a $attr_html href='$href' data-method='$method'>$text</a>";
+    } else {
+      return "<a $attr_html href='$href'>$text</a>";
     }
   }
 
