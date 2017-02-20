@@ -73,11 +73,22 @@ class View {
     echo "<script src='$script_path'></script>";
   }
 
-  public function link_to($text, $href='#', $method=null) {
-    if (is_null($method)) {
-      return "<a href='$href'>$text</a>";
+  public function link_to($text, $href, $attrs=[]) {
+
+    if (array_key_exists('method', $attrs)) {
+      $method = $attrs['method'];
+      unset($attrs['method']);
+    }
+
+    $attr_arr = [];
+    foreach ($attrs as $key => $value) {
+      $attr_arr[] = "$key='$value'";
+    }
+    $attr_html = implode(' ', $attr_arr);
+    if (isset($method)) {
+      return "<a $attr_html href='$href'>$text</a>";
     } else {
-      return "<a href='$href' data-method='$method'>$text</a>";
+      return "<a $attr_html href='$href' data-method='$method'>$text</a>";
     }
   }
 
