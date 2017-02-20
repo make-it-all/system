@@ -53,7 +53,7 @@ class Application {
       if (substr($class, -10) == 'Controller') {
         require_once self::$paths['controllers'] . self::toUnderscore($class) . '.php';
       } else {
-        $model_path = self::$paths['models'] . strtolower($class) . '.php';
+        $model_path = self::$paths['models'] . self::toUnderscore($class) . '.php';
         if (file_exists($model_path)) {
           require_once $model_path;
         }
