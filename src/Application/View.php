@@ -151,6 +151,7 @@ class View {
 
   public function text_area($record, $name, $value=null) {
     $record_name = strtolower(get_class($record));
+    $label_text = ucfirst($record_name);
     $field_name = $record_name . "[$name]";
     if (is_null($value)) { $value = $record->$name; }
     echo "<div class='field'>";
