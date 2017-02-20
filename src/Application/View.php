@@ -108,13 +108,16 @@ class View {
 
 
   public function form_for($record, $url, $attrs=[]) {
+    $id =($record->id() == null) ? '' : $record->id();
     $attr_arr = [];
     foreach ($attrs as $key => $value) {
       $attr_arr[] = "$key='$value'";
     }
     $attr_html = implode(' ', $attr_arr);
-    echo "<form action='$url' method='POST' $attr_html>";
-    if ($record->is_persisted()) {
+    if ($record->id() == null) {
+      echo "<form action='$url' method='POST' $attr_html>";
+    } else {
+      echo "<form action='$url/$record->id()' method='POST' $attr_html>";
       $this->hidden_field($record, '__method', 'PUT');
     }
   }

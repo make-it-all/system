@@ -161,6 +161,8 @@ class Application {
         return $language = 'en';
       case "zh":
         return $language = 'zh';
+      case "ar":
+        return $language = 'ar';
       default:
         return $language = 'en';
     }
