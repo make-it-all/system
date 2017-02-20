@@ -98,7 +98,7 @@ class View {
   public function form_for($record, $url, $attrs=[]) {
     $attr_arr = [];
     foreach ($attrs as $key => $value) {
-      $attr_arr = "$key = '$value'";
+      $attr_arr[] = "$key='$value'";
     }
     $attr_html = implode(' ', $attr_arr);
     echo "<form action='$url' method='POST' $attr_html>";
