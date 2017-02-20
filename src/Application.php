@@ -33,7 +33,7 @@ class Application {
       $params = new Application\Params($route);
       return $this->dispatch($params);
     }
-    throw new Error\NoRouteMatches();
+    throw new Application\Error\NoRouteMatches();
   }
 
   public static function set_default_paths() {
@@ -149,7 +149,7 @@ class Application {
         }
       }
     }
-    throw new Error\AssetNotFound($name, $type);
+    throw new \Application\Error\AssetNotFound("$name, $type");
   }
 
   private static function language() {
@@ -162,7 +162,7 @@ class Application {
     self::$i18n = get_defined_vars();
   }
 
-  public static function I18n($key) {
+  public static function I18n($key, $args) {
     if (self::$i18n === null) {
       self::load_i18n();
     }
@@ -173,6 +173,11 @@ class Application {
         $current = $current[$step];
       } else {
         return $i18n['no_translation_available'] ?? 'no translation';
+      }
+    }
+    if (is_string($current) && !empty($args)) {
+      foreach($args as $key => $value) {
+        $current = preg_replace("/\{\{$key\}\}/", $value, $current);
       }
     }
     return $current;

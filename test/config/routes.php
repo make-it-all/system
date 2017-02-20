@@ -1,7 +1,10 @@
 <?php
 
 $r->root('users#index');
-$r->post('/sessions/login', 'sessions#new');
+
+$r->get('/login', 'sessions#new');
+$r->post('/login', 'sessions#new');
+$r->delete('/logout', 'sessions#new');
 
 $r->resources('users');
 

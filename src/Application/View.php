@@ -90,8 +90,8 @@ class View {
     return "<i class='fa fa-$icon' aria-hidden='true'></i>";
   }
 
-  public function i($key) {
-    return \Application::I18n($key);
+  public function i($key, $args=[]) {
+    return \Application::I18n($key, $args);
   }
 
 
@@ -108,7 +108,7 @@ class View {
   }
 
   public function abstract_field($record, $type, $name, $value=null) {
-    $record_name = strtolower(get_class($record));
+    $record_name = is_string($record) ? $record : strtolower(get_class($record));
     $label_text = ucfirst($name);
     $field_name = $record_name . "[$name]";
     if (is_null($value)) { $value = $record->$name; }
@@ -141,7 +141,6 @@ class View {
     $record_name = strtolower(get_class($record));
     $field_name = $record_name . "[$name]";
     $field_label = ucfirst($name);
-    exit((string)$record->terms);
     $checked = $record->$name == true;
 
     echo "<div class='field'>";

@@ -29,16 +29,25 @@ class Base {
     $this->response_headers = [];
     $this->response_body = null;
 
-    $this->send_action($action);
+    $this->pre_action_vars = get_object_vars($this);
+    $this->send_before_action($action);
+    if (!$this->performed) {
+      $this->send_action($action);
+    }
     if (!$this->performed) {
       $this->response_body = $this->render_view($template, $this->action_vars());
     }
     return [$this->status, $this->response_headers, $this->response_body];
   }
 
+  public function send_before_action($action) {
+    if (method_exists($this, 'before_action')) {
+      $this->before_action($action);
+    }
+  }
+
   public function send_action($action) {
     if (method_exists($this, $action)) {
-      $this->pre_action_vars = get_object_vars($this);
       $this->$action();
     }
   }
@@ -50,7 +59,7 @@ class Base {
         $locals = array_diff_key(get_object_vars($this), $this->pre_action_vars);
       }
       $allowed = array_intersect_key(get_object_vars($this), array_flip(self::$allowed_vars));
-      $this->action_vars = array_merge($locals, $allowed);
+      $this->action_vars = array_merge($locals ?? [], $allowed);
     }
     return $this->action_vars;
   }
@@ -88,7 +97,7 @@ class Base {
     $this->performed = true;
   }
 
-  public function redirect_to($to) {
+  public function redirect_to($to, $flash=[]) {
     if ($this->performed) {
       throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
     }

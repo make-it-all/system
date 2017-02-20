@@ -3,7 +3,7 @@
 class ExceptionDebugger {
 
   static $templates = [
-    'Error\NoRouteMatches' => 'page_not_found'
+    'Application\Error\NoRouteMatches' => 'page_not_found'
   ];
 
   public function __construct($app) {

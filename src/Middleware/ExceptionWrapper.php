@@ -3,20 +3,19 @@
 class ExceptionWrapper {
 
   private static $exception_status_codes = [
-    'Error\ActionNotFound' => '404',
-    'Error\ActionPerformed' => '500',
-    'Error\AssetNotFound' => '404',
-    'Error\ErrorException' => '500',
-    'Error\FileNotFound' => '500',
-    'Error\MissingParam' => '500',
-    'Error\MissingPartial' => '500',
-    'Error\NoRouteMatches' => '404',
-    'Error\UnknownEnvironment' => '500',
-    'Error\ColumnTypeUnknown' => '500',
-    'Error\InvalidAttribute' => '500',
-    'Error\MethodNotFound' => '500',
-    'Error\RecordNotFound' => '404',
-    'Error\NotImplemented' => '500'
+    'Application\Error\ActionNotFound' => '404',
+    'Application\Error\ActionPerformed' => '500',
+    'Application\Error\AssetNotFound' => '404',
+    'Application\Error\FileNotFound' => '500',
+    'Application\Error\MissingParam' => '500',
+    'Application\Error\MissingPartial' => '500',
+    'Application\Error\NoRouteMatches' => '404',
+    'Application\Error\UnknownEnvironment' => '500',
+    'Chronicle\Error\ColumnTypeUnknown' => '500',
+    'Chronicle\Error\InvalidAttribute' => '500',
+    'Chronicle\Error\MethodNotFound' => '500',
+    'Chronicle\Error\RecordNotFound' => '404',
+    'Chronicle\Error\NotImplemented' => '500'
 
   ];
 

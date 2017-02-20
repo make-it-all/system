@@ -24,7 +24,7 @@ class UsersController extends ApplicationController {
   }
 
   public function edit() {
-
+    $this->redirect_to('/asdasd');
   }
 
   private function user_params() {

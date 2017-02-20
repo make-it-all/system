@@ -1,7 +1,7 @@
 <?php
 
 $serve_static_assets = true;
-$show_exceptions = false;
+$show_exceptions = true;
 $debug_exceptions = true;
 $language = 'de';
 
