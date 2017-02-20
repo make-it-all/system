@@ -90,8 +90,8 @@ class View {
     return "<i class='fa fa-$icon' aria-hidden='true'></i>";
   }
 
-  public function i($key) {
-    return \Application::I18n($key);
+  public function i($key, $args=[]) {
+    return \Application::I18n($key, $args);
   }
 
 
