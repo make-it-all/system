@@ -149,6 +149,13 @@ class View {
     echo "<input type='hidden' name='$field_name' value='$value' />";
   }
 
+  public function text_area($record, $name, $value=null) {
+    $record_name = strtolower(get_class($record));
+    $field_name = $record_name . "[$name]";
+    if (is_null($value)) { $value = $record->$name; }
+    echo "<textarea name='$field_name' value='$value' ></textarea>";
+  }
+
   public function checkbox_field($record, $name, $value='1') {
     $record_name = strtolower(get_class($record));
     $field_name = $record_name . "[$name]";
