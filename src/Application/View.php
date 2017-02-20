@@ -153,7 +153,10 @@ class View {
     $record_name = strtolower(get_class($record));
     $field_name = $record_name . "[$name]";
     if (is_null($value)) { $value = $record->$name; }
-    echo "<textarea name='$field_name' value='$value' ></textarea>";
+    echo "<div class='field'>";
+      echo "<label for='{$name}_field'>$label_text</label>";
+      echo "<textarea name='$field_name' value='$value' ></textarea>";
+    echo "</div>";
   }
 
   public function checkbox_field($record, $name, $value='1') {
