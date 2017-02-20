@@ -159,10 +159,10 @@ class Application {
       return $config['de'];
       break;
     case "en":
-      return $config['en']
+      return $config['en'];
       break;
     default:
-      return $config['en']
+      return $config['en'];
       break;
     }
   }
