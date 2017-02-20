@@ -153,7 +153,18 @@ class Application {
   }
 
   private static function language() {
-    return self::$config['language'];
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    switch ($lang){
+    case "de":
+      $language = 'de';
+      break;
+    case "en":
+      $language = 'en';
+      break;
+    default:
+      $language = 'en';
+      break;
+    }
   }
 
   private static function load_i18n() {
