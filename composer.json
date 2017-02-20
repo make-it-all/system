@@ -25,8 +25,8 @@
     ],
     "psr-4": {
       "Middleware\\": "src/Middleware",
-      "Application\\": "src/Application",
-      "Application\\Error\\": "src/Error"
+      "Application\\Error\\": "src/Error",
+      "Application\\": "src/Application"
     }
   }
 }

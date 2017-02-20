@@ -29,11 +29,20 @@ class Base {
     $this->response_headers = [];
     $this->response_body = null;
 
-    $this->send_action($action);
+    $this->send_before_action($action);
+    if (!$this->performed) {
+      $this->send_action($action);
+    }
     if (!$this->performed) {
       $this->response_body = $this->render_view($template, $this->action_vars());
     }
     return [$this->status, $this->response_headers, $this->response_body];
+  }
+
+  public function send_before_action($action) {
+    if (method_exists($this, 'before_action')) {
+      $this->before_action($action);
+    }
   }
 
   public function send_action($action) {
@@ -88,8 +97,7 @@ class Base {
     $this->performed = true;
   }
 
-  public function redirect_to($to, $flash) {
-    \Application::flash()->next($flash);
+  public function redirect_to($to, $flash=[]) {
     if ($this->performed) {
       throw new \Application\Error\ActionPerformed('This action has already either rendered or redirected and can not redirect again.');
     }

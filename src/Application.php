@@ -33,7 +33,7 @@ class Application {
       $params = new Application\Params($route);
       return $this->dispatch($params);
     }
-    throw new Error\NoRouteMatches();
+    throw new Application\Error\NoRouteMatches();
   }
 
   public static function set_default_paths() {
