@@ -29,6 +29,10 @@ class Params implements \ArrayAccess, \Iterator {
     return new self($allowed, true);
   }
 
+  public function include($key) {
+    return in_array($key, $this->vars);
+  }
+
 
   //----- ArrayAccess - Methods
   public function offsetExists($key) {
