@@ -65,7 +65,7 @@ class Router {
   }
   public function match_path($path, $method='GET') {
     foreach($this->routes as $route) {
-      $match = $route->match($path, $method);
+      $match = $route->match($this->normalize_path($path), $method);
       if ($match !== false) {
         yield $match;
       }
