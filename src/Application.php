@@ -69,10 +69,6 @@ class Application {
     //Rewrites request method allowing browsers to send put, patch and delete requests
     Rack::add('\Middleware\MethodOverride');
 
-    //logs the request
-    $logs_file = self::$paths['logs/requests'];
-    Rack::add('\Middleware\Logger', new Application\Logger($logs_file));
-
     //handles errors for user such as 500 and 404
     Rack::add('\Middleware\ExceptionPresenter');
 
