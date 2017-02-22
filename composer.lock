@@ -4,59 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d0c663bc8b9e99326b90208303d240e1",
-    "content-hash": "0bc4a30bd5b08144351489c3efa8fbd8",
+    "hash": "a6e8fa860ac245107409122656634863",
+    "content-hash": "11e5ad0e5bdbe94f2249b319545b72be",
     "packages": [
-        {
-            "name": "hexmodr/chronicle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/make-it-all/chronicle.git",
-                "reference": "d112e65d50a582d239ccf13f608d33fe644a2b5c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/make-it-all/chronicle/zipball/d112e65d50a582d239ccf13f608d33fe644a2b5c",
-                "reference": "d112e65d50a582d239ccf13f608d33fe644a2b5c",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Chronicle\\": "src",
-                    "Chronicle\\Error\\": "src/Error",
-                    "Chronicle\\Connection\\": "src/connection",
-                    "Chronicle\\Validators\\": "src/validators",
-                    "Chronicle\\Query\\": "src/query",
-                    "Chronicle\\Query\\Parts\\": "src/query/parts"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Henry Morgan",
-                    "email": "henry@cd2solutions.co.uk"
-                }
-            ],
-            "description": "Chronicle is a database abstraction system similar to ActiveRecord",
-            "support": {
-                "source": "https://github.com/make-it-all/chronicle/tree/master",
-                "issues": "https://github.com/make-it-all/chronicle/issues"
-            },
-            "time": "2017-02-20 01:43:42"
-        },
         {
             "name": "hexmodr/rack",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/make-it-all/rack.git",
-                "reference": "f1c72f4235583012d09faa04b87bb2b6bf748d3e"
+                "reference": "ce4d94bae46296d2e25275e8a8da3ea41be22937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/make-it-all/rack/zipball/f1c72f4235583012d09faa04b87bb2b6bf748d3e",
-                "reference": "f1c72f4235583012d09faa04b87bb2b6bf748d3e",
+                "url": "https://api.github.com/repos/make-it-all/rack/zipball/ce4d94bae46296d2e25275e8a8da3ea41be22937",
+                "reference": "ce4d94bae46296d2e25275e8a8da3ea41be22937",
                 "shasum": ""
             },
             "type": "library",
@@ -79,15 +41,14 @@
                 "source": "https://github.com/make-it-all/rack/tree/master",
                 "issues": "https://github.com/make-it-all/rack/issues"
             },
-            "time": "2017-02-19 00:30:49"
+            "time": "2017-02-20 07:21:02"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hexmodr/rack": 20,
-        "hexmodr/chronicle": 20
+        "hexmodr/rack": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

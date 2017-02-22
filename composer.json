@@ -8,7 +8,7 @@
     }
   ],
   "require": {
-    "hexmodr/rack": "dev-master",
+    "hexmodr/rack": "dev-master"
   },
   "repositories": [{
     "type": "vcs",
