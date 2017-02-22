@@ -148,7 +148,7 @@ class Application {
     throw new \Application\Error\AssetNotFound("$name, $type");
   }
 
-  private static function language() {
+  public static function language() {
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     switch ($lang){
       case "de":
