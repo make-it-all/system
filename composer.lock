@@ -4,9 +4,47 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6e8fa860ac245107409122656634863",
-    "content-hash": "11e5ad0e5bdbe94f2249b319545b72be",
+    "hash": "d0c663bc8b9e99326b90208303d240e1",
+    "content-hash": "0bc4a30bd5b08144351489c3efa8fbd8",
     "packages": [
+        {
+            "name": "hexmodr/chronicle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/make-it-all/chronicle.git",
+                "reference": "bd1815a56c331566627ea236640bf87452812a12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/make-it-all/chronicle/zipball/bd1815a56c331566627ea236640bf87452812a12",
+                "reference": "bd1815a56c331566627ea236640bf87452812a12",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Chronicle\\": "src",
+                    "Chronicle\\Error\\": "src/Error",
+                    "Chronicle\\Connection\\": "src/connection",
+                    "Chronicle\\Validators\\": "src/validators",
+                    "Chronicle\\Query\\": "src/query",
+                    "Chronicle\\Query\\Parts\\": "src/query/parts"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Henry Morgan",
+                    "email": "henry@cd2solutions.co.uk"
+                }
+            ],
+            "description": "Chronicle is a database abstraction system similar to ActiveRecord",
+            "support": {
+                "source": "https://github.com/make-it-all/chronicle/tree/master",
+                "issues": "https://github.com/make-it-all/chronicle/issues"
+            },
+            "time": "2017-02-20 14:07:00"
+        },
         {
             "name": "hexmodr/rack",
             "version": "dev-master",
@@ -48,7 +86,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hexmodr/rack": 20
+        "hexmodr/rack": 20,
+        "hexmodr/chronicle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

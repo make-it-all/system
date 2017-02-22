@@ -19,6 +19,7 @@ class Application {
     //add default middleware
     self::set_default_middleware();
 
+    self::setup_chronicle();
     self::get_router()->parse_file(self::$paths['routes']);
 
     //run application
@@ -87,6 +88,10 @@ class Application {
     Rack::add('Application');
   }
 
+  public static function setup_chronicle() {
+    Chronicle\Base::setup_connection(self::$config['database']);
+  }
+
   public static function load_config() {
     self::$config = (function(){
       require Application::$paths['config'].Application::env().'.php';
@@ -153,7 +158,7 @@ class Application {
       case "zh":
         return $language = 'zh';
       case "ar":
-        return $language = 'ar';
+        return $language = 'zh';
       default:
         return $language = 'en';
     }
