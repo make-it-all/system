@@ -19,7 +19,6 @@ class Application {
     //add default middleware
     self::set_default_middleware();
 
-    self::setup_chronicle();
     self::get_router()->parse_file(self::$paths['routes']);
 
     //run application
@@ -90,10 +89,6 @@ class Application {
 
     //processes routes and outputs body
     Rack::add('Application');
-  }
-
-  public static function setup_chronicle() {
-    Chronicle\Base::setup_connection(self::$config['database']);
   }
 
   public static function load_config() {

@@ -9,14 +9,10 @@
   ],
   "require": {
     "hexmodr/rack": "dev-master",
-    "hexmodr/chronicle": "dev-master"
   },
   "repositories": [{
     "type": "vcs",
     "url": "https://github.com/make-it-all/rack"
-  }, {
-    "type": "vcs",
-    "url": "https://github.com/make-it-all/chronicle"
   }],
   "autoload": {
     "files": [
